@@ -75,17 +75,17 @@ const Dashboard = () => {
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
                     </div>
-                    <div>
+                    <div className='overflow-hidden overflow-y-scroll'>
                         {content === "main" &&
-                            <div className='space-y-5 relative w-[100%]'>
-                                <div className='flex sticky top-0 items-center bg-white h-[10vh] rounded-t-xl'>
+                            <div className='space-y-5 w-[100%]'>
+                                <div className='flex items-center bg-white h-[10vh] rounded-t-xl'>
                                     <div className='flex ml-5 border w-28 h-10 justify-center items-center rounded-2xl border-gray-200'>
                                         <div><LiaFilterSolid className='text-xl mt-1 text-red-500' /></div>
                                         <div>Filters</div>
                                     </div>
                                 </div>
                                 <div className='flex border border-gray-200 bg-white rounded-lg'>
-                                    <div><img className='h-48 w-40' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
+                                    <div className='w-60'><img className=' object-cover w-[50vw] h-[30vh] ' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
                                     <div className='flex flex-col'>
                                         <div className='text-sm font-semibold mt-4 pl-10'>Last seen on Dec-16-2024</div>
                                         <div className='text-2xl font-bold pl-10'>Roohi Kaur, 22</div>
@@ -243,7 +243,7 @@ const Dashboard = () => {
             <div className='lg:hidden block relative'>
                 <div className='flex sticky top-0 bg-white items-center justify-between px-5 h-16 border-b shadow-md'>
                     {/* <div><BsPersonLinesFill className='border border-gray-200 rounded-full text-2xl text-gray-400' /></div> */}
-                    <div><TemporaryDrawer/></div>
+                    <div><TemporaryDrawer /></div>
                     <div className='flex gap-3'>
                         <div>
                             <IoPersonOutline className=' text-2xl text-gray-400' />

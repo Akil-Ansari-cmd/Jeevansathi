@@ -12,8 +12,8 @@ const Login = () => {
     const Navigate = useNavigate();
     return (
         <div className='bg-gray-200'>
-            <div className="md:block hidden py-10 bg-cover bg-center" style={{ backgroundImage: 'url("https://static.jeevansathi.com/images/jspc/commonimg/header-inner1.jpg")' }}>
-                <div className='flex bg-slate-700 xl:mx-28 lg:mx-10 mx-0 justify-between'>
+            <div className="md:block hidden sticky top-0 py-10 bg-cover bg-center" style={{ backgroundImage: 'url("https://static.jeevansathi.com/images/jspc/commonimg/header-inner1.jpg")' }}>
+                <div className='flex  bg-slate-700 xl:w-[80%] lg:w-[90%] xl:mx-28 lg:mx-10 mx-0 justify-between'>
                     <div className='flex items-center justify-center lg:gap-10 gap-3'>
                         <div className='md:flex hidden'>
                             <img
@@ -30,7 +30,7 @@ const Login = () => {
                             />
                         </div>
                         <div className='md:flex hidden text-white md:gap-2 gap-0 md:text-sm text-xs whitespace-nowrap'>
-                            BROWSE PROFILES BY
+                            <div>BROWSE PROFILES BY</div>
                             <div><IoIosArrowDown className='my-1' /></div>
                         </div>
                         <div className='flex md:hidden text-white md:gap-2 gap-0 md:text-sm text-xs whitespace-nowrap'>
@@ -51,55 +51,40 @@ const Login = () => {
                             <div><MdPerson className='my-1' /></div>
                         </div>
                         <div className='md:flex hidden'>
-                            <div className='h-16 w-40 bg-blue-500 text-white p-2 text-center py-4'>REGISTER FREE</div>
+                            <div className='h-16 flex justify-center items-center w-40 bg-blue-500 text-white p-2 text-center'>REGISTER FREE</div>
                         </div>
-                        <div className='md:hidden flex'>
+                        {/* <div className='md:hidden flex'>
                             <div className='h-5 w-10 bg-blue-500 text-white p-2 text-center py-4'>REGISTER FREE</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
             <div className="md:hidden block py-10 bg-cover bg-center" style={{ backgroundImage: 'url("https://static.jeevansathi.com/images/jspc/commonimg/header-inner1.jpg")' }}>
-                <div className='flex bg-slate-700 xl:mx-28 lg:mx-10 mx-0 gap-3'>
-                    <div className='flex items-center justify-center lg:gap-10 gap-3'>
-                        <div className='md:flex hidden'>
+                <div className='flex'>
+                    <div className='flex gap-2 justify-start items-center w-[100%] h-8 bg-slate-700 text-white'>
+                        <div className='flex'>
                             <img
-                                className='h-24 md:h-16 bg-white p-2'
+                                className='h-8 bg-white'
                                 src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg'
                                 alt='Jeevansathi Logo'
                             />
                         </div>
-                        <div className='md:hidden flex'>
-                            <img
-                                className='bg-white'
-                                src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg'
-                                alt='Jeevansathi Logo'
-                            />
-                        </div>
-                        <div className='md:flex hidden text-white md:gap-2 gap-0 md:text-sm text-xs whitespace-nowrap'>
-                            BROWSE PROFILES BY
+                        <div className='flex justify-center items-center text-[50%]'>
+                            <div>BROWSE PROFILES</div>
                             <div><IoIosArrowDown className='my-1' /></div>
                         </div>
-                        <div className='flex md:hidden text-white md:gap-2 gap-0 md:text-sm text-xs whitespace-nowrap'>
-                            BROWSE
+                        <div className='flex justify-center items-center text-[50%]'>
+                            <div>SEARCH</div>
                             <div><IoIosArrowDown className='my-1' /></div>
                         </div>
-                        <div className='flex text-white md:gap-2 gap-0 md:text-sm text-xs'>
-                            SEARCH
-                            <div><IoIosArrowDown className='my-1' /></div>
-                        </div>
-                        <div className='flex md:text-sm text-xs text-white'>
-                            HELP
-                        </div>
+                        <div className='text-[50%]'>HELP</div>
                     </div>
-                    <div className='flex lg:gap-10 md:gap-5 gap-0 items-center justify-center md:text-sm text-xs'>
-                        <div className='flex text-white md:gap-2 gap-0'>
-                            LOGIN
+                    <div className='flex items-center gap-2 justify-center bg-slate-700 text-white'>
+                        <div className='flex items-center justify-center text-[50%]'>
+                            <div>LOGIN</div>
                             <div><MdPerson className='my-1' /></div>
                         </div>
-                        <div className='flex whitespace-nowrap'>
-                            <div className='h-5 w-28 bg-blue-500 text-white text-center'>REGISTER FREE</div>
-                        </div>
+                        <div className='bg-blue-500 text-white text-center h-8 flex items-center justify-center text-[50%] whitespace-nowrap'>REGISTER FREE</div>
                     </div>
                 </div>
             </div>
@@ -121,7 +106,7 @@ const Login = () => {
                     <Divider className='bg-black' />
                 </div>
                 <div className='text-center my-5'>New on Jeevansathi?</div>
-                <div  className='p-5 md:mx-28 mx-10 w-[65%] text-white text-center bg-[#D9475C] mb-10'>
+                <div className='p-5 md:mx-28 mx-10 w-[65%] text-white text-center bg-[#D9475C] mb-10'>
                     REGISTER FREE
                 </div>
             </div>
