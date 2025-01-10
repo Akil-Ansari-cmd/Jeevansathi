@@ -1,0 +1,9 @@
+/* For Firefox */
+* {
+    scrollbar-width: none;
+  }
+  
+  /* For Chrome/Safari/Edge */
+  *::-webkit-scrollbar {
+    display: none;
+  }

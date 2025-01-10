@@ -13,9 +13,11 @@ import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { IoSearchSharp } from "react-icons/io5";
 import { GiThermometerScale } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
 import { PiCrownSimple } from "react-icons/pi";
 import { PiFlowerLotusLight } from "react-icons/pi";
 import { TbWorldCheck } from "react-icons/tb";
+import { CiCircleInfo } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 import { CiWallet } from "react-icons/ci";
 import { MdOutlinePerson4 } from "react-icons/md";
@@ -25,7 +27,11 @@ import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { GiSwipeCard } from "react-icons/gi";
 import TemporaryDrawer from './Drawer';
-
+import { IoCheckmarkSharp } from "react-icons/io5";
+import { MdOutlineCalendarToday } from "react-icons/md";
+import { TbWallet } from "react-icons/tb";
+import './App.css'
+import New from './New';
 const Dashboard = () => {
     const [content, setContent] = useState("main");
 
@@ -34,44 +40,45 @@ const Dashboard = () => {
             <div className='lg:block hidden'>
                 <div className='flex sticky top-0 bg-white z-50 items-center justify-between px-7 h-20'>
                     <div><img className='h-10' src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg' /></div>
-                    <div className='flex space-x-6'>
+                    <div className='flex gap-4'>
                         <div>
-                            <IoPersonOutline className='border border-gray-400 rounded-full text-2xl text-gray-400' />
+                            <IoPersonOutline className='border border-gray-400 mt-2 rounded-full text-2xl text-gray-400' />
                         </div>
                         <div>
-                            <FaRegBell className='border border-gray-400 rounded-full text-2xl text-gray-400' />
+                            <FaRegBell className='border border-gray-400 rounded-full mt-2 text-2xl text-gray-400' />
                         </div>
-                        <div><RxHamburgerMenu className='border border-gray-400 rounded-full text-2xl w-10 text-gray-400' /></div>
+                        {/* <div><RxHamburgerMenu className='border border-gray-400 rounded-full text-2xl w-10 text-gray-400' /></div> */}
+                        <div className='-ml-5 mt-0.5'><TemporaryDrawer /></div>
                     </div>
                 </div>
-                <div className='flex pt-5 px-7 h-screen gap-5 bg-gray-50'>
-                    <div className='w-[20%] sticky top-14  px-3 border h-fit border-gray-200 bg-white rounded-lg'>
+                <div className='flex pt-5 xl:px-7 h-screen gap-5 bg-gray-50'>
+                    <div className='xl:w-[20%] w-[25%] sticky top-14  px-3 border h-fit border-gray-200 bg-white rounded-lg'>
                         <div className='flex gap-1 mt-8'>
-                            <div><img className='xl:h-16 xl:w-16 h-10 w-10 rounded-full' src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' /></div>
+                            <div><img className='xl:h-16 xl:w-16 h-10 w-10 rounded-full object-cover' src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' /></div>
                             <div className='xl:mt-2 mt-0'>
                                 <div className='font-bold text-lg'>Hi Person!</div>
-                                <div className='flex text-base xl:gap-2 gap-0'><div className='text-xs'>UTWV4067 </div><div onClick={() => setContent("Profile")} className='text-xs text-red-500 font-semibold'>Edit Profile</div></div>
+                                <div className='flex text-base xl:gap-2 gap-0'><div className='text-xs'>UTWV4067</div><div onClick={() => setContent("Profile")} className='text-xs text-red-500 font-semibold'>Edit Profile</div></div>
                             </div>
                         </div>
                         <div className='my-5'><Divider className='w-[100%]' /></div>
-                        <div className='flex justify-between mt-3'>
+                        <div onClick={() => setContent("main")} className={`flex justify-between cursor-pointer mt-3 ${content === "main" ? "text-black" : "text-gray-400"}`}>
                             <div className='font-semibold'>Matches</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex justify-between my-5 text-gray-400'>
-                            <div className=''>Activity</div>
+                        <div onClick={() => setContent("Activity")} className={`flex justify-between cursor-pointer ${content === "Activity" ? "text-black" : "text-gray-400"} my-5`}>
+                            <div className='font-semibold'>Activity</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex justify-between text-gray-400'>
-                            <div className=''>Search</div>
+                        <div onClick={() => setContent("Search")} className={`flex justify-between cursor-pointer ${content === "Search" ? "text-black" : "text-gray-400"}`}>
+                            <div className='font-semibold'>Search</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex justify-between my-5 text-gray-400'>
-                            <div className=''>Messenger</div>
+                        <div onClick={() => setContent("Mess")} className={`flex justify-between my-5 cursor-pointer ${content === "Mess" ? "text-black" : "text-gray-400"}`}>
+                            <div className='font-semibold'>Messenger</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex justify-between my-6 pb-7 text-gray-400'>
-                            <div className=''>Upgrade</div>
+                        <div onClick={() => setContent("Upgrade")} className={`flex justify-between cursor-pointer my-6 pb-7 ${content === "Upgrade" ? "text-black" : "text-gray-400"}`}>
+                            <div className='font-semibold'>Upgrade</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
                     </div>
@@ -84,15 +91,15 @@ const Dashboard = () => {
                                         <div>Filters</div>
                                     </div>
                                 </div>
-                                <div className='flex border border-gray-200 bg-white rounded-lg'>
-                                    <div className='w-60'><img className=' object-cover w-[50vw] h-[30vh] ' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
-                                    <div className='flex flex-col'>
-                                        <div className='text-sm font-semibold mt-4 pl-10'>Last seen on Dec-16-2024</div>
-                                        <div className='text-2xl font-bold pl-10'>Roohi Kaur, 22</div>
-                                        <div className='pl-10'>4ft 10in   Ajmer   others</div>
-                                        <div className='pl-10'>Not Working   No Income</div>
-                                        <div className='pl-10'>others</div>
-                                        <div className='flex justify-evenly mt-2 pt-2 px-2 bg-pink-100 w-[43vw] h-[30%]'>
+                                <div className='flex w-[100%] border border-gray-200 bg-white rounded-lg'>
+                                    <div className='xl:w-[20%] lg:w-[30%]'><img className='h-48 w-40 object-cover' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
+                                    <div className='flex xl:w-[80%] lg:w-[70%] flex-col'>
+                                        <div className='text-sm font-semibold mt-4 xl:pl-10 pl-5'>Last seen on Dec-16-2024</div>
+                                        <div className='text-2xl font-bold xl:pl-10 pl-5'>Roohi Kaur, 22</div>
+                                        <div className='xl:pl-10 pl-5'>4ft 10in   Ajmer   others</div>
+                                        <div className='xl:pl-10 pl-5'>Not Working   No Income</div>
+                                        <div className='xl:pl-10 pl-5'>others</div>
+                                        <div className='flex xl:justify-evenly  lg:space-x-3 mt-2 pt-2 px-2 bg-pink-100 w-[45vw] h-[50%]'>
                                             <div className='flex text-pink-500 font-semibold gap-1'>
                                                 <div className='mt-0.5'><RxEnvelopeClosed /></div>
                                                 <div className='text-sm'>Interest</div>
@@ -112,15 +119,15 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='flex border border-gray-200 bg-white rounded-lg'>
-                                    <div><img className='h-48 w-40' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
-                                    <div className='flex flex-col'>
-                                        <div className='text-sm font-semibold mt-4 pl-10'>Last seen on Dec-16-2024</div>
-                                        <div className='text-2xl font-bold pl-10'>Roohi Kaur, 22</div>
-                                        <div className='pl-10'>4ft 10in   Ajmer   others</div>
-                                        <div className='pl-10'>Not Working   No Income</div>
-                                        <div className='pl-10'>others</div>
-                                        <div className='flex justify-evenly mt-2 pt-2 px-2 bg-pink-100 w-[43vw] h-[30%]'>
+                                <div className='flex w-[100%] border border-gray-200 bg-white rounded-lg'>
+                                    <div className='xl:w-[20%] lg:w-[30%]'><img className='h-48 w-40 object-cover' src='https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg' /></div>
+                                    <div className='flex xl:w-[80%] lg:w-[70%] flex-col'>
+                                        <div className='text-sm font-semibold mt-4 xl:pl-10 pl-5'>Last seen on Dec-16-2024</div>
+                                        <div className='text-2xl font-bold xl:pl-10 pl-5'>Roohi Kaur, 22</div>
+                                        <div className='xl:pl-10 pl-5'>4ft 10in   Ajmer   others</div>
+                                        <div className='xl:pl-10 pl-5'>Not Working   No Income</div>
+                                        <div className='xl:pl-10 pl-5'>others</div>
+                                        <div className='flex xl:justify-evenly  lg:space-x-3 mt-2 pt-2 px-2 bg-pink-100 w-[45vw] h-[30%]'>
                                             <div className='flex text-pink-500 font-semibold gap-1'>
                                                 <div className='mt-0.5'><RxEnvelopeClosed /></div>
                                                 <div className='text-sm'>Interest</div>
@@ -155,7 +162,7 @@ const Dashboard = () => {
                                         <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
                                         <div><VerifiedIcon style={{ color: "blue" }} /></div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                                         <div className='text-xl font-semibold'>Basic Details</div>
                                         <div className='space-y-3'>
                                             <div>Brief outline of personal information</div>
@@ -181,7 +188,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                                         <div className='text-xl font-semibold'>About Me</div>
                                         <div className='space-y-3'>
                                             <div>Describe yourself in a few words</div>
@@ -196,7 +203,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                                         <div className='text-xl font-semibold'>Education</div>
                                         <div className='space-y-3'>
                                             <div>Showcase your educational information</div>
@@ -214,8 +221,268 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         }
+                        {
+                            content === "Activity" && <div className='w-[60vw] h-fit bg-white'>
+                                <div><New /></div>
+                                <div className="mt-10 pl-6">
+                                    <div className="text-xl font-semibold">Attract more matches!</div>
+                                    <div className="font-serif">Here are some tips for you to enhance your profile</div>
+                                </div>
+                                <div className='border rounded-xl pl-10 border-gray-200 xl:w-[50%] w-[70%] ml-6 my-10'>
+                                    <div className='flex rounded-md items-center ml-10 gap-3 pl-3 mt-10 border border-[#F8C3C1] py-1 w-[50%]'>
+                                        <div className=' bg-[#F8C3C1] rounded-full w-10 h-10 flex items-center justify-center'><TbWallet className='text-xl text-white' /></div>
+                                        <div className='space-y-2'>
+                                            <div className='w-24 rounded-md bg-[#F8C3C1] h-2'></div>
+                                            <div className='w-16 rounded-md bg-[#F8C3C1] h-2'></div>
+                                        </div>
+                                    </div>
+                                    <div className='flex rounded-md items-center gap-3 pl-3 ml-20 py-1 my-2 border border-[#C9E8E2] h-[15%] w-[50%]'>
+                                        <div className=' bg-[#C9E8E2] rounded-full w-10 h-10 flex items-center justify-center'><IoSchoolOutline className='text-xl text-white' /></div>
+                                        <div className='space-y-2'>
+                                            <div className='w-24 rounded-md bg-[#C9E8E2] h-2'></div>
+                                            <div className='w-16 rounded-md bg-[#C9E8E2] h-2'></div>
+                                        </div>
+                                    </div>
+                                    <div className='flex rounded-md items-center gap-3 ml-10 py-1 pl-3 border border-[#FEE0A1] h-[15%] w-[50%]'>
+                                        <div className=' bg-[#FEE0A1] rounded-full w-10 h-10 flex items-center justify-center'><TbWallet className='text-xl text-white' /></div>
+                                        <div className='space-y-2'>
+                                            <div className='w-24 rounded-md bg-[#FEE0A1] h-2'></div>
+                                            <div className='w-16 rounded-md bg-[#FEE0A1] h-2'></div>
+                                        </div>
+                                    </div>
+                                    <div className='mt-16 text-center font-semibold'>Tell us your prefrences</div>
+                                    <div className='text-center mt-2'>
+                                        <div>Help us know you better so that</div>
+                                        <div>we can suggest suitable matches</div>
+                                    </div>
+                                    <div className='text-center mx-auto flex items-center justify-center border border-red-500 w-[80%] h-10 rounded-lg text-red-500 mt-10'>
+                                        Manage Partner Preferences
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        {
+                            content === "Search" &&
+                            <div className='w-[55vw] border border-gray-100 shadow-md relative bg-white pb-5 rounded-xl h-fit'>
+                                <div className='flex sticky top-0 z-50 bg-white gap-5 pt-8 border-b mx-10 justify-center'>
+                                    <div className='border-b-2 font-semibold border-red-700 pb-3'>Search by Criteria</div>
+                                    <div>Search by Profile ID</div>
+                                </div>
+                                <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>Age</div>
+                                    <div>18 Years - 23 Years</div>
+                                </div>
+                                <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>Height</div>
+                                    <div>4'5''</div>
+                                </div>
+                                <div className='mx-20  mt-8 pb-3 font-semibold text-sm'>
+                                    <div className='text-gray-400 text-sm '>Martial Status</div>
+                                    <div className='flex text-sm mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
+                                        <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Never Married
+                                            <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                        </div>
+                                    </div>
+                                    <div className='flex  mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Awaiting Divorce   +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Dirvorced  +</div>
+                                    </div>
+                                    <div className='flex mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Widowed   +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Anulled  +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Married  +</div>
+                                    </div>
+                                </div>
+                                <div className='mx-20  mt-6 pb-3  font-semibold text-sm'>
+                                    <div className='text-gray-400 text-sm'>Religion</div>
+                                    <div className='flex  mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
+                                        <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Muslim
+                                            <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                        </div>
+                                    </div>
+                                    <div className='flex mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Hindu   +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Sikh  +</div>
+                                    </div>
+                                    <div className='flex  mt-2 gap-5 text-gray-400'>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Christian   +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Jain  +</div>
+                                        <div className='border border-gray-400 rounded-2xl p-1'>Parsi  +</div>
+                                    </div>
+                                </div>
+                                <div className='mx-20 text-sm mt-5 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>Caste</div>
+                                    <div>Doesn't Matter</div>
+                                </div>
+                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>Mother tonque</div>
+                                    <div>Doesn't Matter</div>
+                                </div>
+                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>Country</div>
+                                    <div>United kingdom, United States</div>
+                                </div>
+                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                    <div className='text-gray-400'>City Name</div>
+                                    <div>Doesn't Matter</div>
+                                </div>
+                                <div className='flex items-center justify-center font-semibold mx-auto sticky bottom-0 bg-red-500 text-white border border-red-500 w-[50%] h-10 rounded-lg mt-10'>
+                                    Show Me Profiles
+                                </div>
+                            </div>
+                        }
+                        {
+                            content === "Mess" &&
+                            <div className='w-[55vw] bg-white py-5 mt-2 px-8 rounded-xl h-[100vh]'>
+                                <div className='border border-gray-300 bg-gray-50 py-5 xl:w-[50%] w-[70%] px-5 rounded-xl'>
+                                    <div className='font-bold text-lg'>UP Match Hour</div>
+                                    <div className='flex text-gray-400 gap-3 mt-3 pb-2 font-semibold text-sm border-b'>
+                                        <div><MdOutlineCalendarToday className='mt-1' /></div>
+                                        <div>11 Jan,Sat</div>
+                                        <div>08:00 PM - 09:00 PM</div>
+                                    </div>
+                                    <div className='flex items-center ml-44 mt-4 rounded-md h-7 justify-center w-28 text-sm font-semibold bg-red-600 text-white'>Register Now</div>
+                                </div>
+                                <div className='mt-16 font-semibold text-xl'>My Conversations</div>
+                                <div className='flex border-b border-gray-200 gap-5 mt-5 font-semibold text-sm'>
+                                    <div className='border-b-2 border-red-600'>Acceptance</div>
+                                    <div className='text-gray-400 '>Interest</div>
+                                    <div className='text-gray-400 '>Calls</div>
+                                </div>
+                                <div className="flex flex-row gap-2 justify-center mt-20">
+                                    <div className="w-2 h-2 rounded-full bg-red-700 animate-bounce"></div>
+                                    <div className="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.3s]"></div>
+                                    <div className="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.5s]"></div>
+                                </div>
+                            </div>
+                        }
+                        {
+                            content === "Upgrade" &&
+                            <div className='w-[55vw] bg-white py-5 mt-2 xl:px-10 px-0 rounded-xl'>
+                                <div className='flex justify-between '>
+                                    <div className='font-semibold text-xl'>Upgrade Membership</div>
+                                    <div className='xl:flex hidden font-semibold text-red-500 text-sm'>Need help ?</div>
+                                    <div className='xl:hidden flex font-semibold text-red-500 text-sm mr-20'>Need help ?</div>
+                                </div>
+                                <div className='flex w-[100%]  h-10 font-semibold mt-5 rounded-xl'>
+                                    <div className='flex items-center justify-center bg-pink-50 rounded-l-lg w-[50%] border border-red-500'>Self-Service</div>
+                                    <div className='flex items-center justify-center rounded-r-lg w-[50%] border-gray-400 border-y border-r text-gray-400'>Assisted</div>
+                                </div>
+                                <div className='flex xl:gap-5 gap-2'>
+                                    <div className='flex  text-sm font-mono pt-20 flex-col space-y-5 text-gray-500'>
+                                        <div className='xl:flex hidden'>Unlimited calls & contact sharing</div>
+                                        <div className='xl:hidden block'>
+                                            <div>Unlimited calls &</div>
+                                            <div> contact sharing</div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div>Super Interest</div>
+                                            <div><CiCircleInfo className='mt-1' /></div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div>Spotlights</div>
+                                            <div><CiCircleInfo className='mt-1' /></div>
+                                        </div>
+                                        <div>Contact Views</div>
+                                        <div className='flex gap-1'>
+                                            <div>Sharpfinder</div>
+                                            <div><CiCircleInfo className='mt-1' /></div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div>Relationship Manager</div>
+                                            <div><CiCircleInfo className='mt-1' /></div>
+                                        </div>
+                                    </div>
+                                    <div className='w-[17%] mt-8 border text-gray-400 border-gray-200 rounded-xl'>
+                                        <div className='text-center text-sm font-semibold space-y-5 py-5'>
+                                            <div className='!text-black'>Pro</div>
+                                            <div>
+                                                <input type="radio" className='w-4 h-4' />
+                                            </div>
+                                            <div><IoCheckmarkSharp className='mx-auto' /></div>
+                                            <div>20</div>
+                                            <div>3</div>
+                                            <div>20</div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                        </div>
+                                    </div>
+                                    <div className='w-[17%] mt-8 bg-pink-100 text-gray-400 rounded-xl'>
+                                        <div className='text-center text-sm font-semibold space-y-5 py-5'>
+                                            <div className='!text-black'>Pro Max</div>
+                                            <div>
+                                                <input type="radio" className='w-4 h-4 !text-red-500' />
+                                            </div>
+                                            <div><IoCheckmarkSharp className='mx-auto' /></div>
+                                            <div>20</div>
+                                            <div>3</div>
+                                            <div>20</div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                        </div>
+                                    </div>
+                                    <div className='w-[17%] mt-8 text-gray-400 border border-gray-200 rounded-xl'>
+                                        <div className='text-center text-sm font-semibold space-y-5 py-5'>
+                                            <div className='!text-black'>Pro Supreme</div>
+                                            <div>
+                                                <input type="radio" className='w-4 h-4' />
+                                            </div>
+                                            <div><IoCheckmarkSharp className='mx-auto' /></div>
+                                            <div>20</div>
+                                            <div>3</div>
+                                            <div>20</div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                            <div><RxCross2 className='mx-auto' /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='flex mt-10'>
+                                    <div className='w-[30%] mt-3 h-px border'></div>
+                                    <div className='text-sm font-semibold px-2'><span className='text-red-500'>FLAT 50% OFF</span> <span className='text-gray-500'>ON ALL PLANS</span></div>
+                                    <div className='w-[30%] mt-3 h-px border'></div>
+                                </div>
+                                <div className='flex mt-3 space-x-5'>
+                                    <div className='xl:w-[30%] w-[25%] p-2 rounded-xl border border-red-500'>
+                                        <div className='flex justify-between'>
+                                            <div className='text-sm text-red-500'>1 month</div>
+                                            <div><input type="radio" className='w-4 h-4 text-red-500' /></div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div className='text-sm font-semibold'>₹897</div>
+                                            <div className='text-xs line-through mt-0.5'>₹1,030</div>
+                                        </div>
+                                    </div>
+                                    <div className='xl:w-[30%] w-[25%] p-2 rounded-xl border border-gray-200'>
+                                        <div className='flex justify-between'>
+                                            <div className='text-sm '>1 month</div>
+                                            <div><input type="radio" className='w-4 h-4 text-red-500' /></div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div className='text-sm font-semibold'>₹897</div>
+                                            <div className='text-xs line-through mt-0.5'>₹1,030</div>
+                                        </div>
+                                    </div>
+                                    <div className='xl:w-[30%] w-[25%] p-2 rounded-xl border border-gray-200'>
+                                        <div className='flex justify-between'>
+                                            <div className='text-sm'>1 month</div>
+                                            <div><input type="radio" className='w-4 h-4 text-red-500' /></div>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <div className='text-sm font-semibold'>₹897</div>
+                                            <div className='text-xs line-through mt-0.5'>₹1,030</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='flex items-center justify-center xl:mx-auto mx-8 font-semibold bg-red-600 text-white border border-red-500 w-[75%] h-10 rounded-lg mt-4'>
+                                    Get Pro Max now
+                                </div>
+                                <div className='text-center text-sm text-gray-600'>Recurring payment, cancel anytime</div>
+                            </div>
+                        }
                     </div>
-                    <div className='w-[20%] bg-white border border-gray-200 rounded-lg h-fit'>
+                    <div className='xl:w-[20%] w-[30%] bg-white border border-gray-200 rounded-lg h-fit'>
                         <div className='text-center font-semibold text-lg pt-7'>You are <span className='text-red-500'>missing</span> out of the</div>
                         <div className='text-center font-semibold text-lg'>premium benefits!</div>
                         <div className='flex px-7 py-7'>

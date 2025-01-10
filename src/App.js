@@ -5,6 +5,8 @@ import Dashboard from "./Component/Dashboard/Dashboard";
 import Login from "./Component/Header/Login";
 import Home from "./Component/Home/Home";
 import Profile from "./Component/Dashboard/Profile";
+import Activity from "./Component/Dashboard/Activity";
+import Search from "./Component/Dashboard/Search";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
     <Route path="/head" element={<Login/>}/>
     <Route path="/dash" element={<Dashboard/>}/>
     <Route path="/prof" element={<Profile/>}/>
+    <Route path="/Acti" element={<Activity/>}/>
+    <Route path="/Search" element={<Search/>}/>
     </Routes>
    </BrowserRouter>
    </>

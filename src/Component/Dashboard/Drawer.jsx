@@ -28,7 +28,7 @@ export default function TemporaryDrawer() {
                     <Box sx={{ width: 280,'borderRadius':'!100px' }} role="presentation" onClick={toggleDrawer(true)}>
                     <div className='px-3 h-fit border-gray-200 bg-white rounded-lg'>
                         <div className='flex gap-3 mt-8'>
-                            <div><img className='h-16 w-16 rounded-full' src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' /></div>
+                            <div><img className='h-16 w-16 rounded-full object-cover' src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' /></div>
                             <div className='mt-2'>
                                 <div className='font-bold text-lg'>Hi Person!</div>
                                 <div className='flex text-base gap-2'><div className='text-xs'>UTWV4067 </div><div onClick={() => Navigate("/prof")} className='text-xs cursor-pointer text-red-500 font-semibold'>Edit Profile</div></div>
@@ -39,11 +39,11 @@ export default function TemporaryDrawer() {
                             <div className='font-semibold'>Matches</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex font-semibold justify-between my-5 '>
+                        <div onClick={() => Navigate("/Acti")}  className='flex font-semibold justify-between my-5 '>
                             <div className=''>Activity</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
-                        <div className='flex font-semibold justify-between'>
+                        <div  onClick={() => Navigate("/Search")} className='flex font-semibold justify-between'>
                             <div className=''>Search</div>
                             <div className='mt-2'><IoIosArrowForward /></div>
                         </div>
