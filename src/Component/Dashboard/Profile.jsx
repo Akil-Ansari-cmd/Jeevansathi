@@ -31,7 +31,7 @@ const Profile = () => {
                         <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
                         <div><VerifiedIcon style={{ color: "blue" }} /></div>
                     </div>
-                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                         <div className='text-xl font-semibold'>Basic Details</div>
                         <div className='space-y-3'>
                             <div>Brief outline of personal information</div>
@@ -57,7 +57,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                         <div className='text-xl font-semibold'>About Me</div>
                         <div className='space-y-3'>
                             <div>Describe yourself in a few words</div>
@@ -72,7 +72,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='border border-gray-200 pl-7 pt-8 mt-4 rounded-lg shadow-lg'>
+                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
                         <div className='text-xl font-semibold'>Education</div>
                         <div className='space-y-3'>
                             <div>Showcase your educational information</div>

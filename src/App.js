@@ -18,8 +18,8 @@ function App() {
     <Route path="/head" element={<Login/>}/>
     <Route path="/dash" element={<Dashboard/>}/>
     <Route path="/prof" element={<Profile/>}/>
-    <Route path="/Acti" element={<Activity/>}/>
-    <Route path="/Search" element={<Search/>}/>
+    {/* <Route path="/Acti" element={<Activity/>}/>
+    <Route path="/Search" element={<Search/>}/> */}
     </Routes>
    </BrowserRouter>
    </>
