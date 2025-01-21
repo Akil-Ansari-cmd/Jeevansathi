@@ -23,18 +23,25 @@ import { CiWallet } from "react-icons/ci";
 import { MdOutlinePerson4 } from "react-icons/md";
 import { RiTimer2Line } from "react-icons/ri";
 import { BiHandicap } from "react-icons/bi";
+import { FaStar } from "react-icons/fa";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { GiSwipeCard } from "react-icons/gi";
 import TemporaryDrawer from './Drawer';
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { MdOutlineCalendarToday } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 import { TbWallet } from "react-icons/tb";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import { MdModeEdit } from "react-icons/md";
 import './App.css'
 import New from './New';
+import Filters from './Filters';
+import SwipeableTemporaryDrawer from './NewDrawer';
 const Dashboard = () => {
     const [content, setContent] = useState("main");
     const [yes, setYes] = useState("match");
+    const [criteria, setCriteria] = useState("Criteria");
 
     return (
         <>
@@ -43,13 +50,13 @@ const Dashboard = () => {
                     <div><img className='h-10' src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg' /></div>
                     <div className='flex gap-4'>
                         <div>
-                            <IoPersonOutline className='border border-gray-400 mt-2 rounded-full text-2xl text-gray-400' />
+                            <IoPersonOutline onClick={() => setContent("Profile")} className='border border-gray-400 cursor-pointer mt-2 rounded-full text-2xl text-gray-400' />
                         </div>
                         <div>
-                            <FaRegBell className='border border-gray-400 rounded-full mt-2 text-2xl text-gray-400' />
+                            <FaRegBell onClick={() => setContent("Notify")} className='border border-gray-400 cursor-pointer rounded-full mt-2 text-2xl text-gray-400' />
                         </div>
                         {/* <div><RxHamburgerMenu className='border border-gray-400 rounded-full text-2xl w-10 text-gray-400' /></div> */}
-                        <div className='-ml-5 mt-0.5'><TemporaryDrawer /></div>
+                        <div className='-ml-5 mt-0.5'><SwipeableTemporaryDrawer /></div>
                     </div>
                 </div>
                 <div className='flex pt-5 xl:px-7 h-screen gap-5 bg-gray-50'>
@@ -89,7 +96,7 @@ const Dashboard = () => {
                                 <div className='flex items-center bg-white h-[10vh] rounded-t-xl'>
                                     <div className='flex ml-5 border w-28 h-10 justify-center items-center rounded-2xl border-gray-200'>
                                         <div><LiaFilterSolid className='text-xl mt-1 text-red-500' /></div>
-                                        <div>Filters</div>
+                                        <div className=' !flex-none'><Filters /></div>
                                     </div>
                                 </div>
                                 <div className='flex w-[100%] border border-gray-200 bg-white rounded-lg'>
@@ -163,9 +170,12 @@ const Dashboard = () => {
                                         <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
                                         <div><VerifiedIcon style={{ color: "blue" }} /></div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='text-xl font-semibold'>Basic Details</div>
-                                        <div className='space-y-3'>
+                                    <div className='border border-gray-200  py-8 mt-4 rounded-lg shadow-lg'>
+                                        <div className='flex justify-between px-7'>
+                                            <div className='text-xl font-semibold'>Basic Details</div>
+                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                        </div>
+                                        <div className='space-y-3 px-7'>
                                             <div>Brief outline of personal information</div>
                                             <div className='flex gap-4'>
                                                 <div><GiThermometerScale className='text-xl' /></div>
@@ -189,9 +199,12 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='text-xl font-semibold'>About Me</div>
-                                        <div className='space-y-3'>
+                                    <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                        <div className='flex justify-between px-7'>
+                                            <div className='text-xl font-semibold'>About Me</div>
+                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                        </div>
+                                        <div className='space-y-3 px-7'>
                                             <div>Describe yourself in a few words</div>
                                             <div>I am very self motivated.</div>
                                             <div className='flex gap-4'>
@@ -204,9 +217,12 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='border border-gray-200 pl-7 py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='text-xl font-semibold'>Education</div>
-                                        <div className='space-y-3'>
+                                    <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                        <div className='flex justify-between px-7'>
+                                            <div className='text-xl font-semibold'>Education</div>
+                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                        </div>
+                                        <div className='space-y-3 px-7'>
                                             <div>Showcase your educational information</div>
                                             <div className='flex gap-4'>
                                                 <div><IoSchoolOutline className='text-xl' /></div>
@@ -219,6 +235,47 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        }
+                        {
+                            content === "Notify" && <div className="bg-white xl:w-[55vw] w-[40vw]">
+                                <div className='flex pt-5 px-10 gap-60'>
+                                    <div onClick={() => setContent("main")}><IoIosArrowBack className='mt-1 cursor-pointer' style={{ fontSize: "20px" }} /></div>
+                                    <div className='text-xl font-semibold'>What's New?</div>
+                                </div>
+                                <div className='mt-6 mx-5 font-semibold text-gray-400'>older</div>
+                                <div className='flex gap-6 mx-5 px-5 mt-2 bg-[#FFE7EA] p-3 rounded-md'>
+                                    <div className='bg-yellow-50 text-yellow-400 rounded-full xl:w-12 w-20 h-12 flex items-center justify-center'><FaStar style={{ fontSize: "30px" }} /></div>
+                                    <div className='flex flex-col gap-2'>
+                                        <div className='font-semibold'>Now you can look at profiles who have shortlisted you!</div>
+                                        <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Check out Now</div>
+                                    </div>
+                                    <div className='text-gray-500 text-xs mt-1 font-semibold'>1w</div>
+                                </div>
+                                <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                    <div className='bg-yellow-50 text-yellow-400 rounded-full xl:w-12 w-20 h-12 flex items-center justify-center'><FaStar style={{ fontSize: "30px" }} /></div>
+                                    <div className='flex flex-col gap-2'>
+                                        <div className='font-semibold'>Now you can look at profiles who have shortlisted you!</div>
+                                        <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Check out Now</div>
+                                    </div>
+                                    <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
+                                </div>
+                                <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                    <div className='rounded-full xl:w-12 w-20 h-12 flex items-center justify-center'><img className='rounded-full' src='https://jeevansathi-nonscreened-photos.s3.amazonaws.com/thumbnail96/334/433/333764919iib17d0c3d674559fc0c7a0f219499a9baii9395c04821c5820c992a98d9e0d47a5d.jpeg' /></div>
+                                    <div className='flex flex-col gap-2'>
+                                        <div className='font-semibold'>Your photo did not upload as they were against our guidelines</div>
+                                        <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Try Again</div>
+                                    </div>
+                                    <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
+                                </div>
+                                <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                    <div className='bg-pink-50 text-red-500 rounded-full xl:w-12 w-20 h-12 flex items-center justify-center'><IoPersonCircleOutline style={{ fontSize: "30px" }} /></div>
+                                    <div className='flex flex-col'>
+                                        <div className='font-semibold'>Your profile is now live! Start sending interest to matches</div>
+                                        <div className='font-semibold'>you like!</div>
+                                    </div>
+                                    <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
                                 </div>
                             </div>
                         }
@@ -256,7 +313,7 @@ const Dashboard = () => {
                                         <div>Help us know you better so that</div>
                                         <div>we can suggest suitable matches</div>
                                     </div>
-                                    <div className='text-center mx-auto flex items-center justify-center border border-red-500 w-[80%] h-10 rounded-lg text-red-500 mt-10'>
+                                    <div className='text-center mx-auto flex items-center justify-center border border-red-500 w-[80%] h-10 mb-5 rounded-lg text-red-500 mt-10'>
                                         Manage Partner Preferences
                                     </div>
                                 </div>
@@ -266,72 +323,86 @@ const Dashboard = () => {
                             content === "Search" &&
                             <div className='w-[55vw] border border-gray-100 shadow-md relative bg-white pb-5 rounded-xl h-fit'>
                                 <div className='flex sticky top-0 z-50 bg-white gap-5 pt-8 border-b mx-10 justify-center'>
-                                    <div className='border-b-2 font-semibold border-red-700 pb-3'>Search by Criteria</div>
-                                    <div>Search by Profile ID</div>
+                                    <div onClick={() => setCriteria("Criteria")} className={` font-semibold ${criteria === "Criteria" ? "border-b-2 border-red-700 text-gray-500" : ""} pb-3`}>Search by Criteria</div>
+                                    <div onClick={() => setCriteria("Byprofile")} className={` font-semibold ${criteria === "Byprofile" ? "border-b-2 border-red-700 text-gray-500" : ""} pb-3`}>Search by Profile ID</div>
                                 </div>
-                                <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>Age</div>
-                                    <div>18 Years - 23 Years</div>
-                                </div>
-                                <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>Height</div>
-                                    <div>4'5''</div>
-                                </div>
-                                <div className='mx-20  mt-8 pb-3 font-semibold text-sm'>
-                                    <div className='text-gray-400 text-sm '>Martial Status</div>
-                                    <div className='flex text-sm mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
-                                        <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Never Married
-                                            <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                {
+                                    criteria === "Criteria" &&
+                                    <div>
+                                        <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>Age</div>
+                                            <div>18 Years - 23 Years</div>
+                                        </div>
+                                        <div className='mx-20 text-sm mt-12 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>Height</div>
+                                            <div>4'5''</div>
+                                        </div>
+                                        <div className='mx-20  mt-8 pb-3 font-semibold text-sm'>
+                                            <div className='text-gray-400 text-sm '>Martial Status</div>
+                                            <div className='flex text-sm mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
+                                                <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Never Married
+                                                    <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                                </div>
+                                            </div>
+                                            <div className='flex  mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Awaiting Divorce   +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Dirvorced  +</div>
+                                            </div>
+                                            <div className='flex mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Widowed   +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Anulled  +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Married  +</div>
+                                            </div>
+                                        </div>
+                                        <div className='mx-20  mt-6 pb-3  font-semibold text-sm'>
+                                            <div className='text-gray-400 text-sm'>Religion</div>
+                                            <div className='flex  mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
+                                                <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Muslim
+                                                    <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                                </div>
+                                            </div>
+                                            <div className='flex mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Hindu   +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Sikh  +</div>
+                                            </div>
+                                            <div className='flex  mt-2 gap-5 text-gray-400'>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Christian   +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Jain  +</div>
+                                                <div className='border border-gray-400 rounded-2xl p-1'>Parsi  +</div>
+                                            </div>
+                                        </div>
+                                        <div className='mx-20 text-sm mt-5 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>Caste</div>
+                                            <div>Doesn't Matter</div>
+                                        </div>
+                                        <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>Mother tonque</div>
+                                            <div>Doesn't Matter</div>
+                                        </div>
+                                        <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>Country</div>
+                                            <div>United kingdom, United States</div>
+                                        </div>
+                                        <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
+                                            <div className='text-gray-400'>City Name</div>
+                                            <div>Doesn't Matter</div>
+                                        </div>
+                                        <div className='flex items-center justify-center font-semibold mx-auto sticky bottom-0 bg-red-500 text-white border border-red-500 w-[50%] h-10 rounded-lg mt-10'>
+                                            Show Me Profiles
                                         </div>
                                     </div>
-                                    <div className='flex  mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Awaiting Divorce   +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Dirvorced  +</div>
-                                    </div>
-                                    <div className='flex mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Widowed   +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Anulled  +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Married  +</div>
-                                    </div>
-                                </div>
-                                <div className='mx-20  mt-6 pb-3  font-semibold text-sm'>
-                                    <div className='text-gray-400 text-sm'>Religion</div>
-                                    <div className='flex  mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Doesn't Matter   +</div>
-                                        <div className='border bg-pink-100 text-black flex gap-3 border-pink-500 rounded-2xl p-1'>Muslim
-                                            <IoCheckmarkSharp className='mt-1 text-red-600' />
+                                }
+                                {
+                                    criteria === "Byprofile" &&
+                                    <div className='mt-14'>
+                                        <div className='font-semibold text-sm text-gray-500 border-b pb-3  mx-28'>Enter Profile ID</div>
+                                        <div className='flex items-center justify-center font-semibold mx-auto bg-red-300 text-white w-[60%] h-10 rounded-lg mt-60'>
+                                            Show Me Profile
                                         </div>
                                     </div>
-                                    <div className='flex mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Hindu   +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Sikh  +</div>
-                                    </div>
-                                    <div className='flex  mt-2 gap-5 text-gray-400'>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Christian   +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Jain  +</div>
-                                        <div className='border border-gray-400 rounded-2xl p-1'>Parsi  +</div>
-                                    </div>
-                                </div>
-                                <div className='mx-20 text-sm mt-5 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>Caste</div>
-                                    <div>Doesn't Matter</div>
-                                </div>
-                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>Mother tonque</div>
-                                    <div>Doesn't Matter</div>
-                                </div>
-                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>Country</div>
-                                    <div>United kingdom, United States</div>
-                                </div>
-                                <div className='mx-20 text-sm mt-8 border-b pb-3 font-semibold'>
-                                    <div className='text-gray-400'>City Name</div>
-                                    <div>Doesn't Matter</div>
-                                </div>
-                                <div className='flex items-center justify-center font-semibold mx-auto sticky bottom-0 bg-red-500 text-white border border-red-500 w-[50%] h-10 rounded-lg mt-10'>
-                                    Show Me Profiles
-                                </div>
+                                }
                             </div>
                         }
                         {
@@ -514,14 +585,136 @@ const Dashboard = () => {
                     <div><TemporaryDrawer /></div>
                     <div className='flex gap-3'>
                         <div>
-                            <IoPersonOutline className=' text-2xl text-gray-400' />
+                            <IoPersonOutline onClick={() => setYes("pro")} className=' text-2xl cursor-pointer text-gray-400' />
                         </div>
                         <div>
-                            <FaRegBell className=' text-2xl text-gray-400' />
+                            <FaRegBell onClick={() => setYes("Noti")} className=' text-2xl cursor-pointer text-gray-400' />
                         </div>
                     </div>
                 </div>
                 <div>
+                    {
+                        yes === "Noti" && <div className="bg-white">
+                            <div className='flex pt-5 px-10 gap-60'>
+                                <div onClick={() => setContent("main")}><IoIosArrowBack className='mt-1 cursor-pointer' style={{ fontSize: "20px" }} /></div>
+                                <div className='text-xl font-semibold'>What's New?</div>
+                            </div>
+                            <div className='mt-6 mx-5 font-semibold text-gray-400'>older</div>
+                            <div className='flex gap-6 mx-5 px-5 mt-2 bg-[#FFE7EA] p-3 rounded-md'>
+                                <div className='bg-yellow-50 text-yellow-400 rounded-full  md:w-12 w-20 h-12 flex items-center justify-center'><FaStar style={{ fontSize: "30px" }} /></div>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='font-semibold'>Now you can look at profiles who have shortlisted you!</div>
+                                    <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Check out Now</div>
+                                </div>
+                                <div className='text-gray-500 text-xs mt-1 font-semibold'>1w</div>
+                            </div>
+                            <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                <div className='bg-yellow-50 text-yellow-400 rounded-full  md:w-12 w-20 h-12 flex items-center justify-center'><FaStar style={{ fontSize: "30px" }} /></div>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='font-semibold'>Now you can look at profiles who have shortlisted you!</div>
+                                    <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Check out Now</div>
+                                </div>
+                                <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
+                            </div>
+                            <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                <div className='rounded-full   md:w-12 w-20 h-12 flex items-center justify-center'><img className='rounded-full' src='https://jeevansathi-nonscreened-photos.s3.amazonaws.com/thumbnail96/334/433/333764919iib17d0c3d674559fc0c7a0f219499a9baii9395c04821c5820c992a98d9e0d47a5d.jpeg' /></div>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='font-semibold'>Your photo did not upload as they were against our guidelines</div>
+                                    <div className='border border-red-500 font-semibold text-red-500 w-fit p-1 rounded-md'>Try Again</div>
+                                </div>
+                                <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
+                            </div>
+                            <div className='flex gap-6 mx-5 px-5 mt-4 bg-[#FFE7EA] p-3 rounded-md'>
+                                <div className='bg-pink-50 text-red-500 rounded-full  md:w-12 w-20 h-12 flex items-center justify-center'><IoPersonCircleOutline style={{ fontSize: "30px" }} /></div>
+                                <div className='flex flex-col'>
+                                    <div className='font-semibold'>Your profile is now live! Start sending interest to matches</div>
+                                    <div className='font-semibold'>you like!</div>
+                                </div>
+                                <div className='text-gray-500 text-xs mt-1 font-semibold'>2w</div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        yes === "pro" && <div className='bg-white'>
+                            <div className='bg-cover bg-center rounded-t-lg' style={{ height: "60vh", backgroundImage: 'url("https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg")' }}>
+                                <div className='xl:pt-72 pt-60 pl-10 text-2xl font-sans'>Person Name</div>
+                                <div className='pl-10 text-lg font-sans'>ID - UTWV067</div>
+                            </div>
+                            <div className='px-10 border border-gray-200'>
+                                <div className='font-semibold text-lg mt-7 border-b-2 border-red-700 w-28'>About Me</div>
+                                <div><Divider /></div>
+                                <div className='flex items-center justify-between text-lg border border-gray-200 shadow-sm px-4 mt-7 rounded-lg h-20'>
+                                    <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
+                                    <div><VerifiedIcon style={{ color: "blue" }} /></div>
+                                </div>
+                                <div className='border border-gray-200  py-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='flex justify-between px-7'>
+                                        <div className='text-xl font-semibold'>Basic Details</div>
+                                        <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                    </div>
+                                    <div className='space-y-3 px-7'>
+                                        <div>Brief outline of personal information</div>
+                                        <div className='flex gap-4'>
+                                            <div><GiThermometerScale className='text-xl' /></div>
+                                            <div>5'22''</div>
+                                        </div>
+                                        <div className='flex gap-4'>
+                                            <div><PiFlowerLotusLight className='text-xl' /></div>
+                                            <div>Sikh Arora</div>
+                                        </div>
+                                        <div className='flex gap-4'>
+                                            <div><TbWorldCheck className='text-xl' /></div>
+                                            <div>Mother Tonque is Hindi</div>
+                                        </div>
+                                        <div className='flex gap-4'>
+                                            <div><CiLocationOn className='text-xl' /></div>
+                                            <div>Lucknow, Uttar Pradesh</div>
+                                        </div>
+                                        <div className='flex gap-4'>
+                                            <div><CiWallet className='text-xl' /></div>
+                                            <div>Rs. 1 - 2 LPA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='flex justify-between px-7'>
+                                        <div className='text-xl font-semibold'>About Me</div>
+                                        <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                    </div>
+                                    <div className='space-y-3 px-7'>
+                                        <div>Describe yourself in a few words</div>
+                                        <div>I am very self motivated.</div>
+                                        <div className='flex gap-4'>
+                                            <div><MdOutlinePerson4 className='text-xl' /></div>
+                                            <div>Profile Managed by Self</div>
+                                        </div>
+                                        <div className='flex gap-4'>
+                                            <div><BiHandicap className='text-xl' /></div>
+                                            <div>Disability - None</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                    <div className='flex justify-between px-7'>
+                                        <div className='text-xl font-semibold'>Education</div>
+                                        <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                    </div>
+                                    <div className='space-y-3 px-7'>
+                                        <div>Showcase your educational information</div>
+                                        <div className='flex gap-4'>
+                                            <div><IoSchoolOutline className='text-xl' /></div>
+                                            <div>BE/BTECH - INTEGRAL UNIVERSITY</div>
+                                        </div>
+                                        <div className='w-[90%]'><Divider /></div>
+                                        <div className='flex flex-col gap-1 ml-8'>
+                                            <div>High School</div>
+                                            <div>Saraswati Vidya Mandir</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                     {yes === "match" &&
                         <div>
                             <div className='px-16 mt-2'>
@@ -723,7 +916,7 @@ const Dashboard = () => {
                             <div className='flex justify-between '>
                                 <div className='font-semibold text-xl'>Upgrade Membership</div>
                                 <div className=' font-semibold text-red-500 text-sm'>Need help ?</div>
-                               
+
                             </div>
                             <div className='flex w-[100%]  h-10 font-semibold mt-5 rounded-xl'>
                                 <div className='flex items-center justify-center bg-pink-50 rounded-l-lg w-[50%] border border-red-500'>Self-Service</div>
@@ -732,7 +925,7 @@ const Dashboard = () => {
                             <div className='flex gap-5'>
                                 <div className='flex  text-sm font-mono pt-20 flex-col space-y-5 text-gray-500'>
                                     <div className=''>Unlimited calls & contact sharing</div>
-                                    
+
                                     <div className='flex gap-1'>
                                         <div>Super Interest</div>
                                         <div><CiCircleInfo className='mt-1' /></div>
@@ -841,7 +1034,7 @@ const Dashboard = () => {
                 </div>
                 <div className='flex sticky bottom-0 bg-white justify-evenly mt-4 rounded-t-xl border-t shadow-lg text-gray-400'>
                     <div onClick={() => setYes("match")} className='flex flex-col text-xl font-semibold'>
-                        <div className='pt-7 flex items-center justify-center ${yes === "match" ? "text-red-700" : "text-gray-400"} h-12'><GiSwipeCard /></div>
+                        <div className={`pt-7 flex items-center justify-center ${yes === "match" ? "text-red-700" : "text-gray-400"} h-12`}><GiSwipeCard /></div>
                         <div className='text-sm'>Interest</div>
                     </div>
                     <div onClick={() => setYes("Active")} className='flex flex-col text-xl font-semibold'>

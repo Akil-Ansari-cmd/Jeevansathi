@@ -75,27 +75,27 @@ function New() {
                 <div className="flex flex-col bg-gray-100 rounded-xl xl:!w-[70%] lg:!w-[80%] !w-[70%]  p-4">
                     <div className="text-xl"><FaRegEnvelope /></div>
                     <div className="text-xl font-bold py-2">00</div>
-                    <div>Accepted Interest</div>
+                    <div>Interests Received</div>
                 </div>
                 <div className="flex flex-col bg-gray-100 rounded-xl xl:!w-[70%] lg:!w-[80%] !w-[70%]  p-4">
                     <div className="text-xl"><FaRegEnvelope /></div>
                     <div className="text-xl font-bold py-2">00</div>
-                    <div>Accepted Interest</div>
+                    <div>Interests Sent</div>
                 </div>
                 <div className="flex flex-col bg-gray-100 rounded-xl xl:!w-[70%] lg:!w-[80%] !w-[70%]  p-4">
                     <div className="text-xl"><FaRegEnvelope /></div>
                     <div className="text-xl font-bold py-2">00</div>
-                    <div>Accepted Interest</div>
+                    <div>Shortlisted Profiles</div>
                 </div>
                 <div className="flex flex-col bg-gray-100 rounded-xl xl:!w-[70%] lg:!w-[80%] !w-[70%]  p-4">
                     <div className="text-xl"><FaRegEnvelope /></div>
                     <div className="text-xl font-bold py-2">00</div>
-                    <div>Accepted Interest</div>
+                    <div>Decline Interests</div>
                 </div>
                 <div className="flex flex-col bg-gray-100 rounded-xl xl:!w-[70%] lg:!w-[80%] !w-[70%]  p-4">
                     <div className="text-xl"><FaRegEnvelope /></div>
                     <div className="text-xl font-bold py-2">00</div>
-                    <div>Accepted Interest</div>
+                    <div>Filtered Interests</div>
                 </div>
             </Slider>
         </div>

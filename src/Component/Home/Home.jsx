@@ -7,7 +7,7 @@ const Home = () => {
     <div className='overflow-hidden'>
       <div><img src='https://www.ieplads.com/mailers/2016/jeevansathi/js-lp-21sept/images/logo.png' /></div>
       <div className=''>
-        <div className="bg-cover bg-center mt-2 flex" style={{backgroundImage: 'url("https://www.ieplads.com/mailers/2022/jeevansathi/SEM-LP-05april/images/js-banner1_1.jpg")' }}>
+        <div className="bg-cover bg-center mt-2 flex" style={{ backgroundImage: 'url("https://www.ieplads.com/mailers/2022/jeevansathi/SEM-LP-05april/images/js-banner1_1.jpg")' }}>
           <div className='mt-96 md:mx-10 mx-0'>
             <div className='text-white text-5xl font-serif'>Now, chat for free!</div>
             <div className='text-white text-2xl font-serif'>Finding your perfect match just became easier</div>
@@ -32,31 +32,77 @@ const Home = () => {
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Create Profile For:</div>
-                  <input type='text' className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  {/* <input type='text' className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
+                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                    <option value="Please Select" className='text-gray-400'>Please Select</option>
+                    <option value="self">Self</option>
+                    <option value="son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                  </select>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className='whitespace-nowrap'>Date of Birth:</div>
                   <div className='md:mx-6 mx-0'>
-                    <input type='text' className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Day' />
-                    <input type='text' className='border border-slate-300 w-[30%]' placeholder='Month' />
+                    {/* <input type='text' className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Day' /> */}
+                    <select name="cars" className='border lg:mx-5 outline-none text-gray-400 mx-0 border-slate-300 w-[20%]' placeholder='Day'>
+                      <option value="day">Day</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                    <select name="cars" className='border border-slate-300 outline-none text-gray-400 w-[30%]' placeholder='Day'>
+                      <option value="Month">Month</option>
+                      <option value="Jan">Jan</option>
+                      <option value="Feb">Feb</option>
+                      <option value="March">March</option>
+                    </select>
+                    {/* <select name="cars" className='border outline-none mx-2 text-gray-400 border-slate-300 w-[25%]' placeholder='Year'>
+                      <option value="Year">Year</option>
+                      <option value="2001">2001</option>
+                      <option value="2002">2002</option>
+                      <option value="2003">2003</option>
+                    </select> */}
+                    {/* <input type='text' className='border border-slate-300 w-[30%]' placeholder='Month' /> */}
                     <input type='text' className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Year' />
                   </div>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Height:</div>
-                  <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  {/* <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
+                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                    <option value="Please Select" className='text-gray-400'>Please Select</option>
+                    <option value="self">Self</option>
+                    <option value="son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                  </select>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Martial Status:</div>
-                  <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  {/* <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
+                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                    <option value="Please Select" className='text-gray-400'>Please Select</option>
+                    <option value="self">Self</option>
+                    <option value="son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                  </select>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Mother Tonque:</div>
-                  <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                    <option value="Please Select" className='text-gray-400'>Please Select</option>
+                    <option value="self">Self</option>
+                    <option value="son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                  </select>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Religion:</div>
-                  <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Type Religion' />
+                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                    <option value="Please Select" className='text-gray-400'>Please Select</option>
+                    <option value="self">Self</option>
+                    <option value="son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                  </select>
                 </div>
                 <div className='md:flex grid justify-between'>
                   <div className=''>Pin Code:</div>
