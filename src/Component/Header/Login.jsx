@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import { MdPerson } from "react-icons/md";
 import Divider from '@mui/material/Divider';
@@ -8,8 +8,77 @@ import { GrLinkedin } from "react-icons/gr";
 import { FaSquareGooglePlus } from "react-icons/fa6";
 import New from './New';
 import { useNavigate } from 'react-router-dom';
+import { GetOtp, VerifyOtp } from '../Services/Get Otp';
 const Login = () => {
     const Navigate = useNavigate();
+
+    const[open,setOpen]=useState(false)
+    const [data, setData] = useState({
+        email: "",
+        otp: "",
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        console.log(e.target.value)
+
+        setData(() => ({
+            ...data,
+            [name]: value,
+        }))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        Otp()
+
+        console.log("data",data);
+    }
+
+    
+    const Otp=async()=>{
+        const data1 = await GetOtp(data);
+
+        console.log(data1, "data1")
+
+        if(data1.status===200){
+
+            setOpen(true)
+           
+        
+        }
+        else{
+            setOpen(false)
+        }
+    } 
+    
+
+    const req ={
+        email:data?.email,
+        otp:data?.otp
+
+
+
+    }
+    
+  const handlevarifyOtp=async(e)=>{
+    e.preventDefault()
+    
+    const otpdata = await VerifyOtp(req)
+    console.log(">>>>>>",otpdata)
+    if (otpdata?.status === 200) {
+        console.log("Navigating to /dash");
+        Navigate("/dash");
+      } else {
+        
+        alert("Invalid OTP or something went wrong.");
+      }
+
+      console.log(otpdata);  
+  }
+
+
     return (
         <div className='bg-gray-200'>
             <div className="md:block hidden sticky top-0 py-10 bg-cover bg-center" style={{ backgroundImage: 'url("https://static.jeevansathi.com/images/jspc/commonimg/header-inner1.jpg")' }}>
@@ -91,16 +160,24 @@ const Login = () => {
             <div className='bg-white mt-5 lg:w-[50%] w-[80%] h-[100%] py-5 md:mx-20 mx-5'>
                 <div className='md:pl-28 pl-10'>
                     <div className='pt-5'>You have successfully logged out</div>
-                    <div>
-                        <input type='text' className='my-5 p-5 w-[80%] outline-none border border-black' placeholder='Email ID/Mobile Number' />
-                    </div>
-                    <div>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <input type='text' name='email' onChange={handleChange} value={data.email} className='my-5 p-5 w-[80%] outline-none border border-black' placeholder='Email ID/Mobile Number' />
+                        </div>
+                       { open && <div>
+                            <input type='text' name='otp' onChange={handleChange} value={data.otp} className='my-5 p-5 w-[80%] outline-none border border-black' placeholder='Otp' />
+                        </div>}
+                        {/* <div>
                         <input type='text' className='p-5 w-[80%] outline-none border border-black' placeholder='Password' />
-                    </div>
-                    <div className='md:mx-36 mx-16 my-5'>Forgot Password</div>
-                    <div onClick={() => Navigate("/dash")} className='p-5 cursor-pointer w-[80%] text-white text-center bg-slate-700'>
-                        LOGIN
-                    </div>
+                        </div> */}
+                        <div className='md:mx-36 mx-16 my-5'>Forgot Password</div>
+                       {!open?(<button type='submit' className='p-5 cursor-pointer w-[80%] text-white text-center bg-slate-700'>
+                           Send Otp
+                        </button>):
+                        (<button  onClick={handlevarifyOtp} className='p-5 cursor-pointer w-[80%] text-white text-center bg-slate-700'>
+                         Verify otp
+                        </button>)}
+                    </form>
                 </div>
                 <div className='mt-10 w-[80%] mx-auto'>
                     <Divider className='bg-black' />

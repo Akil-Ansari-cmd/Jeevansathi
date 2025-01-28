@@ -1,8 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { SignUp } from '../Services/SignUp';
 const Home = () => {
   const Navigate = useNavigate();
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    mobile_number: "",
+    gender: "",
+    age: "",
+    religion: "",
+    location: "",
+    address: "",
+    income: "",
+    profession: "",
+    height: "",
+    martial_status: ""
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    console.log(e.target.value)
+
+    setData(() => ({
+      ...data,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Sign()
+    console.log("data", data);
+  }
+
+  const Sign = async () => {
+    const data1 = await SignUp(data);
+      console.log(data1, "data1",data1?.data?.token_key)
+      
+
+      localStorage.setItem("token",data1?.data?.token_key)
+  }
+
+
   return (
     <div className='overflow-hidden'>
       <div><img src='https://www.ieplads.com/mailers/2016/jeevansathi/js-lp-21sept/images/logo.png' /></div>
@@ -19,111 +61,114 @@ const Home = () => {
                 Trusted Marriage Site Over 10 Lakhs Profiles
               </div>
             </div>
-            <div className='bg-white'>
-              <div onClick={() => Navigate("/head")} className='flex justify-end items-end cursor-pointer mx-5 text-xs text-blue-500 py-3'>Member Login</div>
-              <div className='md:mx-10 mx-4 space-y-4 md:text-sm text-xs'>
-                <div className='md:flex grid justify-between'>
-                  <div>Email:</div>
-                  <input type='text' className='border border-slate-300 md:w-[70%] w-[100%]' />
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div>Password:</div>
-                  <input type='text' className='border border-slate-300 md:w-[70%] w-[100%]' />
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Create Profile For:</div>
-                  {/* <input type='text' className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
-                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
-                    <option value="Please Select" className='text-gray-400'>Please Select</option>
-                    <option value="self">Self</option>
-                    <option value="son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                  </select>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className='whitespace-nowrap'>Date of Birth:</div>
-                  <div className='md:mx-6 mx-0'>
-                    {/* <input type='text' className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Day' /> */}
-                    <select name="cars" className='border lg:mx-5 outline-none text-gray-400 mx-0 border-slate-300 w-[20%]' placeholder='Day'>
-                      <option value="day">Day</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                    <select name="cars" className='border border-slate-300 outline-none text-gray-400 w-[30%]' placeholder='Day'>
-                      <option value="Month">Month</option>
-                      <option value="Jan">Jan</option>
-                      <option value="Feb">Feb</option>
-                      <option value="March">March</option>
-                    </select>
-                    {/* <select name="cars" className='border outline-none mx-2 text-gray-400 border-slate-300 w-[25%]' placeholder='Year'>
+            <form onSubmit={handleSubmit}>
+              <div className='bg-white'>
+                <div onClick={() => Navigate("/head")} className='flex justify-end items-end cursor-pointer mx-5 text-xs text-blue-500 py-3'>Member Login</div>
+                <div className='md:mx-10 mx-4 space-y-4 md:text-sm text-xs'>
+                  <div className='md:flex grid justify-between'>
+                    <div>Email:</div>
+                    <input type='text' name='email' onChange={handleChange} value={data.email} className='border border-slate-300 md:w-[70%] w-[100%]' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div>Password:</div>
+                    <input type='text' name='password' onChange={handleChange} value={data.password} className='border border-slate-300 md:w-[70%] w-[100%]' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Mobile Number:</div>
+                    <input type='text' name='mobile_number' onChange={handleChange} value={data.mobile_number} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='+91' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Gender:</div>
+                    <input type='text' name='gender' onChange={handleChange} value={data.gender} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  </div>
+                  {/* <div className='md:flex grid justify-between'>
+                    <div className='whitespace-nowrap'>Date of Birth:</div>
+                    <div className='md:mx-6 mx-0'>
+                      <input type='text' name='Day' onChange={handleChange} value={data.Day} className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Day' />
+                      <select name="cars" className='border lg:mx-5 outline-none text-gray-400 mx-0 border-slate-300 w-[20%]' placeholder='Day'>
+                        <option value="day">Day</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <select name="cars" className='border border-slate-300 outline-none text-gray-400 w-[30%]' placeholder='Day'>
+                        <option value="Month">Month</option>
+                        <option value="Jan">Jan</option>
+                        <option value="Feb">Feb</option>
+                        <option value="March">March</option>
+                      </select>
+                      <select name="cars" className='border outline-none mx-2 text-gray-400 border-slate-300 w-[25%]' placeholder='Year'>
                       <option value="Year">Year</option>
                       <option value="2001">2001</option>
                       <option value="2002">2002</option>
                       <option value="2003">2003</option>
+                    </select>
+                      <input type='text' name='Month' onChange={handleChange} value={data.Month} className='border border-slate-300 w-[30%]' placeholder='Month' />
+                      <input type='text' name='Year' onChange={handleChange} value={data.Year} className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Year' />
+                    </div>
+                  </div> */}
+                  {/* <div className='md:flex grid justify-between'>
+                    <div className=''>Height:</div>
+                    <input type='text' name='Height' onChange={handleChange} value={data.Height} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                      <option value="Please Select" className='text-gray-400'>Please Select</option>
+                      <option value="self">Self</option>
+                      <option value="son">Son</option>
+                      <option value="Daughter">Daughter</option>
+                    </select>
+                  </div> */}
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Religion:</div>
+                    <input type='text' name='religion' onChange={handleChange} value={data.religion} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Age:</div>
+                    <input type='text' name='age' onChange={handleChange} value={data.age} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    {/* <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
+                      <option value="Please Select" className='text-gray-400'>Please Select</option>
+                      <option value="self">Self</option>
+                      <option value="son">Son</option>
+                      <option value="Daughter">Daughter</option>
                     </select> */}
-                    {/* <input type='text' className='border border-slate-300 w-[30%]' placeholder='Month' /> */}
-                    <input type='text' className='border lg:mx-5 mx-0 border-slate-300 w-[20%]' placeholder='Year' />
                   </div>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Height:</div>
-                  {/* <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
-                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
-                    <option value="Please Select" className='text-gray-400'>Please Select</option>
-                    <option value="self">Self</option>
-                    <option value="son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                  </select>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Martial Status:</div>
-                  {/* <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' /> */}
-                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
-                    <option value="Please Select" className='text-gray-400'>Please Select</option>
-                    <option value="self">Self</option>
-                    <option value="son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                  </select>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Mother Tonque:</div>
-                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
-                    <option value="Please Select" className='text-gray-400'>Please Select</option>
-                    <option value="self">Self</option>
-                    <option value="son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                  </select>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Religion:</div>
-                  <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
-                    <option value="Please Select" className='text-gray-400'>Please Select</option>
-                    <option value="self">Self</option>
-                    <option value="son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                  </select>
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Pin Code:</div>
-                  <input type='text' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' />
-                </div>
-                <div className='md:flex grid justify-between'>
-                  <div className=''>Mobile Number:</div>
-                  <input type='number' className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='+91' />
-                </div>
-                <div className='flex pb-7'>
-                  <div className='flex md:mx-10 mx-2 md:gap-3 gap-1'>
-                    <input type='checkbox' />
-                    <div className='text-xs'>
-                      I have agreed to the Terms & Conditions & have read & understood the Privacy Policy.</div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Location:</div>
+                    <input type='text' name='location' onChange={handleChange} value={data.location} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
                   </div>
-                  <div>
-                    <img className='md:h-10 h-5 w-48' src='https://www.jeevansathi.com/profile/images/registration_revamp_new/joinfree.png' />
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Address:</div>
+                    <input type='text' name='address' onChange={handleChange} value={data.address} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Income:</div>
+                    <input type='text' name='income' onChange={handleChange} value={data.income} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Profession:</div>
+                    <input type='text' name='profession' onChange={handleChange} value={data.profession} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Height:</div>
+                    <input type='number' name='height' onChange={handleChange} value={data.height} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' />
+                  </div>
+                  <div className='md:flex grid justify-between'>
+                    <div className=''>Martial Status:</div>
+                    <input type='text' name='martial_status' onChange={handleChange} value={data.martial_status} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' />
+                  </div>
+                  <div className='flex pb-7'>
+                    <div className='flex md:mx-10 mx-2 md:gap-3 gap-1'>
+                      <input type='checkbox' />
+                      <div className='text-xs'>
+                        I have agreed to the Terms & Conditions & have read & understood the Privacy Policy.</div>
+                    </div>
+                    <button type='submit'>
+                      Register
+                      {/* <img className='md:h-10 h-5 w-48' src='https://www.jeevansathi.com/profile/images/registration_revamp_new/joinfree.png' /> */}
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

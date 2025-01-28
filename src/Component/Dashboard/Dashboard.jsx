@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegBell } from "react-icons/fa";
-import { RxHamburgerMenu } from "react-icons/rx";
 import Divider from '@mui/material/Divider';
 import { IoIosArrowForward } from "react-icons/io";
 import { LiaFilterSolid } from "react-icons/lia";
@@ -25,38 +24,61 @@ import { RiTimer2Line } from "react-icons/ri";
 import { BiHandicap } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 import { IoSchoolOutline } from "react-icons/io5";
-import { BsPersonLinesFill } from "react-icons/bs";
 import { GiSwipeCard } from "react-icons/gi";
 import TemporaryDrawer from './Drawer';
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { MdOutlineCalendarToday } from "react-icons/md";
+import { FaLocationArrow } from "react-icons/fa6";
 import { IoIosArrowBack } from "react-icons/io";
 import { TbWallet } from "react-icons/tb";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { BsPersonHeart } from "react-icons/bs";
+import { BsPersonSquare } from "react-icons/bs";
+import { SiLinuxprofessionalinstitute } from "react-icons/si";
+import { GoPlus } from "react-icons/go";
 import { MdModeEdit } from "react-icons/md";
+import { SlLocationPin } from "react-icons/sl";
+import { GoArrowLeft } from "react-icons/go";
 import './App.css'
 import New from './New';
 import Filters from './Filters';
 import SwipeableTemporaryDrawer from './NewDrawer';
+import { DataGet } from '../Services/Get Otp';
+import Form from './Form';
 const Dashboard = () => {
     const [content, setContent] = useState("main");
     const [yes, setYes] = useState("match");
     const [criteria, setCriteria] = useState("Criteria");
+    const [about, setAbout] = useState("about");
+
+
+
+    const [data, setData] = useState({})
+    const DataApi = async () => {
+
+        const response = await DataGet();
+        console.log("data..........", response?.data);
+        setData(response?.data?.data)
+    };
+
+    useEffect(() => {
+        DataApi();
+    }, [])
 
     return (
         <>
             <div className='lg:block hidden'>
                 <div className='flex sticky top-0 bg-white z-50 shadow-md items-center justify-between px-7 h-20'>
-                    <div><img className='h-10' src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg' /></div>
+                    <div><img className='h-10  cursor-pointer' src='https://static.jeevansathi.com/images/jspc/commonimg/desktopLogo25Years.svg' /></div>
                     <div className='flex gap-4'>
-                        <div>
-                            <IoPersonOutline onClick={() => setContent("Profile")} className='border border-gray-400 cursor-pointer mt-2 rounded-full text-2xl text-gray-400' />
+                        <div className='border border-gray-400 rounded-full h-9 w-9 flex items-center justify-center'>
+                            <IoPersonOutline onClick={() => setContent("Profile")} className=' cursor-pointer text-2xl text-gray-400' />
                         </div>
-                        <div>
-                            <FaRegBell onClick={() => setContent("Notify")} className='border border-gray-400 cursor-pointer rounded-full mt-2 text-2xl text-gray-400' />
+                        <div className='border border-gray-400 rounded-full h-9 w-9 flex items-center justify-center'>
+                            <FaRegBell onClick={() => setContent("Notify")} className='cursor-pointer text-2xl text-gray-400' />
                         </div>
                         {/* <div><RxHamburgerMenu className='border border-gray-400 rounded-full text-2xl w-10 text-gray-400' /></div> */}
-                        <div className='-ml-5 mt-0.5'><SwipeableTemporaryDrawer /></div>
+                        <div className='border border-gray-400 rounded-full h-9 w-9 flex items-center justify-center'><SwipeableTemporaryDrawer /></div>
                     </div>
                 </div>
                 <div className='flex pt-5 xl:px-7 h-screen gap-5 bg-gray-50'>
@@ -64,8 +86,8 @@ const Dashboard = () => {
                         <div className='flex gap-1 mt-8'>
                             <div><img className='xl:h-16 xl:w-16 h-10 w-10 rounded-full object-cover' src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' /></div>
                             <div className='xl:mt-2 mt-0'>
-                                <div className='font-bold text-lg'>Hi Person!</div>
-                                <div className='flex text-base xl:gap-2 gap-0'><div className='text-xs'>UTWV4067</div><div onClick={() => setContent("Profile")} className='text-xs text-red-500 font-semibold'>Edit Profile</div></div>
+                                <div className='font-bold text-lg text-[#34495E]'>Hi Person!</div>
+                                <div className='flex text-base xl:gap-2 gap-0'><div className='text-xs font-semibold text-[#768493]'>UTWV4067</div><div onClick={() => setContent("Profile")} className='text-xs text-[#D8465C] font-semibold'>Edit Profile</div></div>
                             </div>
                         </div>
                         <div className='my-5'><Divider className='w-[100%]' /></div>
@@ -93,10 +115,10 @@ const Dashboard = () => {
                     <div className='overflow-hidden overflow-y-scroll'>
                         {content === "main" &&
                             <div className='space-y-5 w-[100%]'>
-                                <div className='flex items-center bg-white h-[10vh] rounded-t-xl'>
+                                <div className='flex items-center cursor-pointer bg-white h-[10vh] rounded-t-xl'>
                                     <div className='flex ml-5 border w-28 h-10 justify-center items-center rounded-2xl border-gray-200'>
                                         <div><LiaFilterSolid className='text-xl mt-1 text-red-500' /></div>
-                                        <div className=' !flex-none'><Filters /></div>
+                                        <div className='!flex-none'><Filters /></div>
                                     </div>
                                 </div>
                                 <div className='flex w-[100%] border border-gray-200 bg-white rounded-lg'>
@@ -164,77 +186,182 @@ const Dashboard = () => {
                                     <div className='pl-10 text-lg font-sans'>ID - UTWV067</div>
                                 </div>
                                 <div className='px-10 border border-gray-200'>
-                                    <div className='font-semibold text-lg mt-7 border-b-2 border-red-700 w-28'>About Me</div>
+                                    <div className='flex'>
+                                        <div onClick={() => setAbout("about")} className={`font-semibold text-lg mt-7 ${about === "about" ? "border-b-2 border-red-700 text-gray-500" : ""} w-28`}>About Me</div>
+                                        <div onClick={() => setAbout("looking")} className={`font-semibold text-lg mt-7 ${about === "looking" ? "border-b-2 border-red-700 text-gray-500" : ""} w-28`}>Looking For</div>
+                                    </div>
                                     <div><Divider /></div>
-                                    <div className='flex items-center justify-between text-lg border border-gray-200 shadow-sm px-4 mt-7 rounded-lg h-20'>
-                                        <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
-                                        <div><VerifiedIcon style={{ color: "blue" }} /></div>
-                                    </div>
-                                    <div className='border border-gray-200  py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='flex justify-between px-7'>
-                                            <div className='text-xl font-semibold'>Basic Details</div>
-                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                    {about === "about" &&
+                                        <div>
+                                            <div className='flex items-center justify-between text-lg border border-gray-200 shadow-sm px-4 mt-7 rounded-lg h-20'>
+                                                <div><span className='font-semibold text-red-500'>Verify your profile</span> using selfie to assure that you are genuine and get a badge</div>
+                                                <div><VerifiedIcon style={{ color: "blue" }} /></div>
+                                            </div>
+                                            <div className='border border-gray-200  py-8 mt-4 rounded-lg shadow-lg'>
+                                                <div className='flex justify-between px-7'>
+                                                    <div className='text-xl font-semibold'>Basic Details</div>
+                                                    <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                                </div>
+                                                <div className='space-y-3 px-7'>
+                                                    <div>Brief outline of personal information</div>
+                                                    <div className='flex gap-4'>
+                                                        <div><GiThermometerScale className='text-xl' /></div>
+                                                        <div>5'22''</div>
+                                                    </div>
+                                                    <div className='flex gap-4'>
+                                                        <div><PiFlowerLotusLight className='text-xl' /></div>
+                                                        <div>Sikh Arora</div>
+                                                    </div>
+                                                    <div className='flex gap-4'>
+                                                        <div><TbWorldCheck className='text-xl' /></div>
+                                                        <div>Mother Tonque is Hindi</div>
+                                                    </div>
+
+                                                    <div className='flex gap-4'>
+                                                        <div><CiLocationOn className='text-xl' /></div>
+                                                        <div>Lucknow, Uttar Pradesh</div>
+                                                    </div>
+                                                    <div className='flex gap-4'>
+                                                        <div><CiWallet className='text-xl' /></div>
+                                                        <div>Rs. 1 - 2 LPA</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                                <div className='flex justify-between px-7'>
+                                                    <div className='text-xl font-semibold'>About Me</div>
+                                                    <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                                </div>
+                                                <div className='space-y-3 px-7'>
+                                                    <div>Describe yourself in a few words</div>
+                                                    <div>I am very self motivated.</div>
+                                                    <div className='flex gap-4'>
+                                                        <div><MdOutlinePerson4 className='text-xl' /></div>
+                                                        <div>Profile Managed by Self</div>
+                                                    </div>
+                                                    <div className='flex gap-4'>
+                                                        <div><BiHandicap className='text-xl' /></div>
+                                                        <div>Disability - None</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
+                                                <div className='flex justify-between px-7'>
+                                                    <div className='text-xl font-semibold'>Education</div>
+                                                    <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
+                                                </div>
+                                                <div className='space-y-3 px-7'>
+                                                    <div>Showcase your educational information</div>
+                                                    <div className='flex gap-4'>
+                                                        <div><IoSchoolOutline className='text-xl' /></div>
+                                                        <div>BE/BTECH - INTEGRAL UNIVERSITY</div>
+                                                    </div>
+                                                    <div className='w-[90%]'><Divider /></div>
+                                                    <div className='flex flex-col gap-1 ml-8'>
+                                                        <div>High School</div>
+                                                        <div>Saraswati Vidya Mandir</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='space-y-3 px-7'>
-                                            <div>Brief outline of personal information</div>
-                                            <div className='flex gap-4'>
-                                                <div><GiThermometerScale className='text-xl' /></div>
-                                                <div>5'22''</div>
+                                    }
+                                    {
+                                        about === "looking" && 
+                                            <div>
+                                                <div className="w-[50vw]">
+                                                    <div className="border border-gray-200 py-8 mt-4 rounded-lg shadow-lg">
+                                                        <div className="flex justify-between px-7">
+                                                            <div className="text-xl font-semibold">Partner Basic Details</div>
+                                                            <div className="flex">
+                                                                
+                                                                <div><Form  DataApi={ DataApi} data={data}/></div>
+                                                            </div>
+                                                        </div>
+                                                        <div key={data.id} className="space-y-3 px-7">
+                                                            <div>Brief outline of personal information</div>
+                                                            <div className="flex gap-4">
+                                                                <div><BsPersonSquare className="text-xl" /></div>
+                                                                <div>{data.age}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><GiThermometerScale className="text-xl" /></div>
+                                                                <div>{data.height}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><PiFlowerLotusLight className="text-xl" /></div>
+                                                                <div>{data.religion}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><BsPersonHeart className="text-xl" /></div>
+                                                                <div>{data?.marital_status}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><FaLocationArrow className="text-xl" /></div>
+                                                                <div>{data?.location}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><SiLinuxprofessionalinstitute className="text-xl" /></div>
+                                                                <div>{data?.profession}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><TbWorldCheck className="text-xl" /></div>
+                                                                <div>Mother Tongue is Hindi</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><SlLocationPin className="text-xl" /></div>
+                                                                <div>{data?.address}</div>
+                                                            </div>
+                                                            <div className="flex gap-4">
+                                                                <div><CiWallet className="text-xl" /></div>
+                                                                <div>{data?.income}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="border border-gray-200 py-8 mt-4 rounded-lg shadow-lg">
+                                                        <div className="flex justify-between px-7">
+                                                            <div className="text-xl font-semibold">Partner's Education</div>
+                                                            <div className="mt-1"><MdModeEdit className="text-gray-400" style={{ fontSize: "20px" }} /></div>
+                                                        </div>
+                                                        <div className="space-y-3 px-7">
+                                                            <div>Showcase your educational information</div>
+                                                            <div className="flex gap-4">
+                                                                <div><IoSchoolOutline className="text-xl" /></div>
+                                                                <div>BE/BTECH - INTEGRAL UNIVERSITY</div>
+                                                            </div>
+                                                            <div className="w-[90%]"><Divider /></div>
+                                                            <div className="flex flex-col gap-1 ml-8">
+                                                                <div>High School</div>
+                                                                <div>Saraswati Vidya Mandir</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="border border-gray-200 py-8 mt-4 rounded-lg shadow-lg">
+                                                        <div className="flex justify-between px-7">
+                                                            <div className="text-xl font-semibold">Partner Lifestyle and Appearance</div>
+                                                            <div className="mt-1"><MdModeEdit className="text-gray-400" style={{ fontSize: "20px" }} /></div>
+                                                        </div>
+                                                        <div className="space-y-3 px-7 pl-10">
+                                                            <div className="flex flex-col gap-1">
+                                                                <div>Drinking Habit</div>
+                                                                <div className="text-xs">Doesn't Matter</div>
+                                                            </div>
+                                                            <div className="flex flex-col gap-1">
+                                                                <div>Dietary Habit</div>
+                                                                <div className="text-xs">Doesn't Matter</div>
+                                                            </div>
+                                                            <div className="flex flex-col gap-1">
+                                                                <div>Smoking Habit</div>
+                                                                <div className="text-xs">Doesn't Matter</div>
+                                                            </div>
+                                                            <div className="flex flex-col gap-1">
+                                                                <div>Special Cases</div>
+                                                                <div className="text-xs">Doesn't Matter</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className='flex gap-4'>
-                                                <div><PiFlowerLotusLight className='text-xl' /></div>
-                                                <div>Sikh Arora</div>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <div><TbWorldCheck className='text-xl' /></div>
-                                                <div>Mother Tonque is Hindi</div>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <div><CiLocationOn className='text-xl' /></div>
-                                                <div>Lucknow, Uttar Pradesh</div>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <div><CiWallet className='text-xl' /></div>
-                                                <div>Rs. 1 - 2 LPA</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='flex justify-between px-7'>
-                                            <div className='text-xl font-semibold'>About Me</div>
-                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
-                                        </div>
-                                        <div className='space-y-3 px-7'>
-                                            <div>Describe yourself in a few words</div>
-                                            <div>I am very self motivated.</div>
-                                            <div className='flex gap-4'>
-                                                <div><MdOutlinePerson4 className='text-xl' /></div>
-                                                <div>Profile Managed by Self</div>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <div><BiHandicap className='text-xl' /></div>
-                                                <div>Disability - None</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='border border-gray-200 py-8 mt-4 rounded-lg shadow-lg'>
-                                        <div className='flex justify-between px-7'>
-                                            <div className='text-xl font-semibold'>Education</div>
-                                            <div className='mt-1'><MdModeEdit className='text-gray-400' style={{ fontSize: "20px" }} /></div>
-                                        </div>
-                                        <div className='space-y-3 px-7'>
-                                            <div>Showcase your educational information</div>
-                                            <div className='flex gap-4'>
-                                                <div><IoSchoolOutline className='text-xl' /></div>
-                                                <div>BE/BTECH - INTEGRAL UNIVERSITY</div>
-                                            </div>
-                                            <div className='w-[90%]'><Divider /></div>
-                                            <div className='flex flex-col gap-1 ml-8'>
-                                                <div>High School</div>
-                                                <div>Saraswati Vidya Mandir</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
                             </div>
                         }
