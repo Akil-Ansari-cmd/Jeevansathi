@@ -67,7 +67,7 @@ const Login = () => {
     
     const otpdata = await VerifyOtp(req)
     console.log(">>>>>>",otpdata)
-    if (otpdata?.status === 200) {
+    if (otpdata?.data?.response_code === 200) {
         console.log("Navigating to /dash");
         Navigate("/dash");
       } else {
@@ -167,9 +167,6 @@ const Login = () => {
                        { open && <div>
                             <input type='text' name='otp' onChange={handleChange} value={data.otp} className='my-5 p-5 w-[80%] outline-none border border-black' placeholder='Otp' />
                         </div>}
-                        {/* <div>
-                        <input type='text' className='p-5 w-[80%] outline-none border border-black' placeholder='Password' />
-                        </div> */}
                         <div className='md:mx-36 mx-16 my-5'>Forgot Password</div>
                        {!open?(<button type='submit' className='p-5 cursor-pointer w-[80%] text-white text-center bg-slate-700'>
                            Send Otp

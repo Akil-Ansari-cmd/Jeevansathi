@@ -1,30 +1,30 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
-import { MdModeEdit } from 'react-icons/md';
-import { DataGet, DataUpdate } from '../Services/Get Otp';
+import React, { useState } from 'react'
+import { MdEdit } from 'react-icons/md'
+import { AdminUpdate } from '../Services/Get Otp';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Form = ({ data, DataApi }) => {
+const Edit = ({item, AdminApi}) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(!open);
     const handleClose = () => setOpen(false);
-
+    console.log("item", item);
     const formik = useFormik({
         initialValues: {
-            preference_id:data?.id ||"",
-            age: data?.age || '',
-            religion: data?.religion || '',
-            location: data?.location || '',
-            marital_status: data?.marital_status || '',
-            height: data?.height || '',
-            address: data?.address || '',
-            income: data?.income || '',
-            profession: data?.profession || ''
+            preference_id:item?.id ||"",
+            age: item?.age || '',
+            religion: item?.religion || '',
+            location: item?.location || '',
+            marital_status: item?.marital_status || '',
+            height: item?.height || '',
+            address: item?.address || '',
+            income: item?.income || '',
+            profession: item?.profession || ''
         },
         enableReinitialize: true,
         onSubmit: async(values) => {
-         const data =   await DataUpdate(values);
+         const data =   await AdminUpdate(values);
 
          console.log("data",data)
 
@@ -33,24 +33,25 @@ const Form = ({ data, DataApi }) => {
             toast.success("successfully complete"); 
             handleClose();
            
-            DataApi();
+            AdminApi();
            
+         }
+         else{
+            toast.error("Something went wrong");
          }
         }
     });
 
     return (
         <div>
-            <div onClick={handleOpen} className="mt-1">
-                <MdModeEdit className="text-gray-400" style={{ fontSize: "20px" }} />
-            </div>
-
+                <div  onClick={handleOpen} className=''> <MdEdit className='w-8 h-5 text-xs rounded-md text-white bg-yellow-400' />
+                </div>
             {open && (
-                <div onClick={handleClose} className='fixed bg-black bg-opacity-50 z-50 h-[100vh] left-0 w-[100%] inset-0 py-20'>
+                <div className='fixed bg-black bg-opacity-50 z-50 h-[100vh] left-0 w-[100%] inset-0 py-20'>
                     <div onClick={(e) => e.stopPropagation()} className='h-[100%] mx-auto w-[70%]'>
-                        <form onSubmit={formik.handleSubmit} className='xl:h-[100%] h-[50%] pl-10 m-auto w-[45vw] border rounded-md bg-white shadow-lg'>
-                            <div className='font-semibold text-3xl mt-5 text-center'>Partner Basic Details</div>
-                            <div className='text-center'>Brief outline of personal information</div>
+                        <form onSubmit={formik.handleSubmit} className='lg:h-[100%] h-[50%] pl-10 m-auto w-[45vw] border rounded-md bg-white shadow-lg'>
+                            <div className='font-semibold text-3xl mt-5 text-center'>Edit User's Details</div>
+                            <div className='text-center'>Brief outline of User's information</div>
                             <div className='grid grid-cols-2 gap-2'>
                                 <div>
                                     <div className='text-gray-400'>Age</div>
@@ -143,8 +144,7 @@ const Form = ({ data, DataApi }) => {
             )}
             <Toaster/>
         </div>
-    );
-};
+    )
+}
 
-export default Form;
-
+export default Edit

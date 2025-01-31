@@ -47,7 +47,10 @@ const Home = () => {
 
   return (
     <div className='overflow-hidden'>
-      <div><img src='https://www.ieplads.com/mailers/2016/jeevansathi/js-lp-21sept/images/logo.png' /></div>
+      <div className='flex justify-between px-10'>
+        <div><img src='https://www.ieplads.com/mailers/2016/jeevansathi/js-lp-21sept/images/logo.png' /></div>
+        <div onClick={() => Navigate("/Panel")} className='py-2 font-semibold'>Admin</div>
+      </div>
       <div className=''>
         <div className="bg-cover bg-center mt-2 flex" style={{ backgroundImage: 'url("https://www.ieplads.com/mailers/2022/jeevansathi/SEM-LP-05april/images/js-banner1_1.jpg")' }}>
           <div className='mt-96 md:mx-10 mx-0'>
@@ -79,7 +82,7 @@ const Home = () => {
                   </div>
                   <div className='md:flex grid justify-between'>
                     <div className=''>Gender:</div>
-                    <input type='text' name='gender' onChange={handleChange} value={data.gender} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <input type='text' name='gender' onChange={handleChange} value={data.gender} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Enter' />
                   </div>
                   {/* <div className='md:flex grid justify-between'>
                     <div className='whitespace-nowrap'>Date of Birth:</div>
@@ -119,11 +122,11 @@ const Home = () => {
                   </div> */}
                   <div className='md:flex grid justify-between'>
                     <div className=''>Religion:</div>
-                    <input type='text' name='religion' onChange={handleChange} value={data.religion} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <input type='text' name='religion' onChange={handleChange} value={data.religion} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Enter' />
                   </div>
                   <div className='md:flex grid justify-between'>
                     <div className=''>Age:</div>
-                    <input type='text' name='age' onChange={handleChange} value={data.age} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <input type='text' name='age' onChange={handleChange} value={data.age} className='border relative border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Enter' />
                     {/* <select name="cars" className='border border-slate-300 text-gray-400 outline-none md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select'>
                       <option value="Please Select" className='text-gray-400'>Please Select</option>
                       <option value="self">Self</option>
@@ -133,11 +136,11 @@ const Home = () => {
                   </div>
                   <div className='md:flex grid justify-between'>
                     <div className=''>Location:</div>
-                    <input type='text' name='location' onChange={handleChange} value={data.location} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <input type='text' name='location' onChange={handleChange} value={data.location} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Enter' />
                   </div>
                   <div className='md:flex grid justify-between'>
                     <div className=''>Address:</div>
-                    <input type='text' name='address' onChange={handleChange} value={data.address} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Select' />
+                    <input type='text' name='address' onChange={handleChange} value={data.address} className='border border-slate-300 md:w-[70%] w-[100%] placeholder:text-sm px-3' placeholder='Please Enter' />
                   </div>
                   <div className='md:flex grid justify-between'>
                     <div className=''>Income:</div>
