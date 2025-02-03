@@ -5,5 +5,7 @@ export const ApiUrl = {
     matched :"updatepreference/",
     manage : "adminapp/preferenceupdate-by-admin/",
     status: "adminapp/profile-active-and-deactive-by-admin/",
-    blog: "blog-category-api-of-admin/"
+    blog: "adminapp/blog-category-api-of-admin/",
+    add: "adminapp/blog-api-of-admin/",
+    faq: "adminapp/faq-admin-api/"
 }

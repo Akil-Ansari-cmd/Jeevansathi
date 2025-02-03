@@ -83,10 +83,10 @@ const Panel = () => {
                         {open && <div>
                             <input type='text' name='otp' onChange={handleChange} value={data.otp} className='outline-none w-80 h-10 rounded-md border border-gray-400 ml-10 mt-8 placeholder:pl-5' placeholder='Enter Otp' />
                         </div>}
-                        {!open ? (<button type='submit' className='p-3 rounded-xl mt-8 cursor-pointer mx-32 w-[40%] text-white text-center bg-slate-700'>
+                        {!open ? (<button type='submit' className='p-3 rounded-xl mt-8 cursor-pointer mx-32 w-[40%] text-white text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ... '>
                             Send Otp
                         </button>) :
-                            (<button onClick={handleverifyOtp} className='p-3 mt-8  mx-32 cursor-pointer rounded-xl w-[40%] text-white text-center bg-slate-700'>
+                            (<button onClick={handleverifyOtp} className='p-3 mt-8  mx-32 cursor-pointer rounded-xl w-[40%] text-white text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ... '>
                                 Verify otp
                             </button>)}
                     </div>

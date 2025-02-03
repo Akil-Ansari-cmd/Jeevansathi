@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { SignUp } from '../Services/SignUp';
+import { RiAdminLine } from "react-icons/ri";
 const Home = () => {
   const Navigate = useNavigate();
   const [data, setData] = useState({
@@ -49,7 +50,9 @@ const Home = () => {
     <div className='overflow-hidden'>
       <div className='flex justify-between px-10'>
         <div><img src='https://www.ieplads.com/mailers/2016/jeevansathi/js-lp-21sept/images/logo.png' /></div>
-        <div onClick={() => Navigate("/Panel")} className='py-2 font-semibold'>Admin</div>
+        <div onClick={() => Navigate("/Panel")} className='flex py-2 font-semibold gap-1'>
+        <RiAdminLine className='mt-1'/>
+        Admin</div>
       </div>
       <div className=''>
         <div className="bg-cover bg-center mt-2 flex" style={{ backgroundImage: 'url("https://www.ieplads.com/mailers/2022/jeevansathi/SEM-LP-05april/images/js-banner1_1.jpg")' }}>

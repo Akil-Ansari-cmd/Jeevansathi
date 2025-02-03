@@ -1,6 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { FaQuestion } from "react-icons/fa6";
 import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 import { AiFillDashboard } from "react-icons/ai";
@@ -9,11 +8,16 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSettings } from "react-icons/io5";
 import { MdDelete, MdEdit, MdPeopleAlt } from "react-icons/md";
 import { ActiveApi, AdminManage, StatusUpdate } from '../Services/Get Otp';
+import { IoIosArrowForward } from "react-icons/io";
 import { GrBlog } from "react-icons/gr";
 import Edit from './Edit';
 import { Switch } from '@mui/material';
 import Blog from './Blog';
+import { useNavigate } from 'react-router-dom';
+import Logout from './Logout';
+import Faq from './Faq';
 const Admin = () => {
+    
     const [content, setContent] = useState("Preferences")
     const [data, setData] = useState();
 
@@ -37,7 +41,7 @@ const Admin = () => {
     const StatusApi = async () => {
 
         const response = await StatusUpdate();
-        console.log("data..........", response?.data?.data);
+        console.log("data..........", response?.data?.data?.id);
         setStatus(response?.data?.data)
     };
 
@@ -57,13 +61,17 @@ const Admin = () => {
 
     }
 
+   
+
+
 
 
     const handleChecked = (e, id) => {
+        console.log("Profile ID:", id); 
         const newStatus = e.target.checked ? "active" : "deactive";
         console.log("id", id)
 
-        console.log(e.target.checked)
+        // console.log(e.target.checked)
 
         const req = {
             status: newStatus,
@@ -81,94 +89,46 @@ const Admin = () => {
     return (
         <div>
             <div className='flex h-screen'>
-                <div className='bg-slate-700 w-[20%]  fixed top-0 left-0 h-full overflow-y-auto'>
+                <div className='bg-opacity-10 bg-gradient-to-r from-indigo-300 from-10% via-sky-200 via-30% to-emerald-300 to-90% ...  w-[20%]  fixed top-0 left-0 h-full overflow-y-auto'>
                     <div className='flex items-center justify-center h-14 text-xl !bg-white w-full'>Master Admin</div>
-                    {/* <div className='!bg-slate-700 h-screen'>
-                        <Accordion className='!bg-slate-700 !gap-1'>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon className='text-white' />}
-                                aria-controls="panel1-content"
-                                id="panel1-header"
-                                className='!bg-slate-700'
-                            >
-                                <Typography component="span" className='text-white flex gap-2'>
-                                    <AiFillDashboard className='mt-1' />
-                                    Dashoard
-                                </Typography>
-                            </AccordionSummary>
-                            <div className='text-white ml-7 my-2'>
-                                <div>Name 1</div>
-                                <div>Name 1</div>
-                            </div>
-                        </Accordion>
-                        <Accordion className='!bg-slate-700 !gap-1'>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon className='text-white' />}
-                                aria-controls="panel2-content"
-                                id="panel2-header"
-                                className='!bg-slate-700'
-
-                            >
-                                <Typography component="span" className='text-white flex gap-2'>
-                                    <MdPeopleAlt className='mt-1' />
-                                    User's
-                                </Typography>
-                            </AccordionSummary>
-                            <div className='text-white ml-7 my-2'>
-                                <div>Name 1</div>
-                                <div>Name 1</div>
-                            </div>
-                        </Accordion>
-                        <Accordion className='!bg-slate-700 !gap-1'>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon className='text-white' />}
-                                aria-controls="panel2-content"
-                                id="panel2-header"
-                                className='!bg-slate-700'
-
-                            >
-                                <Typography component="span" className='text-white flex gap-2'>
-                                    <IoSettings className='mt-1' />
-                                    Settings
-                                </Typography>
-                            </AccordionSummary>
-                            <div className='text-white ml-7 my-2'>
-                                <div>Name 1</div>
-                                <div>Name 1</div>
-                            </div>
-                        </Accordion>
-                    </div> */}
                     <div className='gap-3 space-y-4 mt-3'>
-                        <div onClick={() => setContent("Preferences")} className='flex justify-between text-white'>
+                        <div onClick={() => setContent("Preferences")} className='flex justify-between text-orange-500'>
                             <div className='flex text-xl gap-2'>
                                 <div><AiFillDashboard className='mt-1' /></div>
-                                <div>Dashboard</div>
+                                <div>DASHBOARD</div>
                             </div>
-                            <div><ExpandMoreIcon /></div>
+                            <div className='mt-1 text-xl'>{content === "Preferences" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
                         </div>
-                        <div onClick={() => setContent("User")} className='flex justify-between text-white'>
+                        <div onClick={() => setContent("User")} className='flex justify-between text-yellow-500'>
                             <div className='flex text-xl gap-2'>
-                                <div><MdPeopleAlt className='mt-1' /></div>
-                                <div>User's</div>
+                                <div><MdPeopleAlt className='mt-1 ' /></div>
+                                <div>USER</div>
                             </div>
-                            <div><ExpandMoreIcon /></div>
+                            <div className='mt-1 text-xl'>{content === "User" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
                         </div>
-                        <div onClick={() => setContent("Blog")} className='flex justify-between text-white'>
+                        <div onClick={() => setContent("Blog")} className='flex justify-between   text-blue-500'>
                             <div className='flex text-xl gap-2'>
                                 <div><GrBlog className='mt-1'/></div>
-                                <div>Blog</div>
+                                <div>BLOG</div>
                             </div>
-                            <div><ExpandMoreIcon /></div>
+                            <div className='mt-1 text-xl'>{content === "Blog" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
+                        </div>
+                        <div onClick={() => setContent("Faq")} className='flex justify-between text-violet-500'>
+                            <div className='flex text-xl gap-2'>
+                                <div><FaQuestion className='mt-1 ' /></div>
+                                <div>FAQ</div>
+                            </div>
+                            <div className='mt-1 text-xl'>{content === "Faq" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
                         </div>
                     </div>
                 </div>
                 <div className='w-[80%] h-screen ml-[20%]'>
-                    <div className='flex justify-between text-white px-10 h-14 bg-slate-700 items-center text-xl 
+                    <div className='flex justify-end text-white px-10 h-14 bg-opacity-10 bg-gradient-to-r from-emerald-300 from-10% via-sky-200 via-30% to-indigo-300 to-90% ...   items-center text-xl 
                              fixed top-0 left-[20%] w-[80%] z-50 shadow-md'>
-                        <div><GiHamburgerMenu /></div>
+                        {/* <div><GiHamburgerMenu /></div> */}
                         <div className='flex'>
-                            <div>Admin</div>
-                            <div><BiSolidDownArrow className='mt-2' style={{ fontSize: "12px" }} /></div>
+                            <div><Logout/></div>
+                            {/* <div><BiSolidDownArrow className='mt-2' style={{ fontSize: "12px" }} /></div> */}
                         </div>
                     </div>
 
@@ -186,7 +146,7 @@ const Admin = () => {
                                 <div className='border border-gray-300 my-5 mx-7 rounded-sm overflow-y-auto max-h-[60vh]'>
                                     <div className='flex text-sm border-b-2'>
                                         <div className='w-[5%] font-semibold p-1 py-2 pl-2 border-r border-gray-300'>#</div>
-                                        <div className='w-[10%] font-semibold py-2 px-3 border-r border-gray-300 flex justify-between'>Name
+                                        <div className='w-[10%] font-semibold py-2 px-3 border-r border-gray-300 flex justify-between'>Email
                                             <div><BiSort className='font-semibold text-gray-400 text-lg' /></div>
                                         </div>
                                         <div className='w-[15%] font-semibold py-2 px-3 border-r border-gray-300 flex justify-between'>Age
@@ -215,7 +175,7 @@ const Admin = () => {
                                         {data && data.map((item, index) => (
                                             <div key={index} className='flex text-sm border-t text-gray-500'>
                                                 <div className='w-[5%] p-1 py-2 pl-2 border-r border-gray-300'>{index + 1}</div>
-                                                <div className='w-[10%] py-2 px-3 border-r border-gray-300'>Turtle
+                                                <div className='w-[10%] py-2 px-3 border-r border-gray-300 truncate'>{item?.user_name}
                                                 </div>
                                                 <div className='w-[15%]  py-2 px-3 border-r border-gray-300 '>{item?.age}
                                                 </div>
@@ -307,7 +267,14 @@ const Admin = () => {
                         }
                         {
                             content === "Blog" &&
-                            <div><Blog /></div>
+                            <div>
+                                <div><Blog /></div>
+                            </div>
+                        }
+                        {
+                            content === "Faq" && <div>
+                                <Faq/>
+                            </div>
                         }
                     </div>
                 </div>
