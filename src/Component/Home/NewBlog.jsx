@@ -1,9 +1,29 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react'
-import { PostBlog } from '../Services/Admin Blog';
+import React, { useEffect, useState } from 'react'
+import { Blog, DeleteBlog, PostBlog } from '../Services/Admin Blog';
+import { CiSquarePlus } from 'react-icons/ci';
+import { useLocation } from 'react-router-dom';
+import BlogUpdate from './BlogUpdate';
+import BlogDelete from './BlogDelete';
 
-const NewBlog = ({ state }) => {
-  console.log("itemsss..", state)
+const NewBlog = () => {
+  const location = useLocation();
+  const { state } = location; // This is the data you passed via Navigate
+
+  // You can now use the `state` in the component
+  console.log(state, "Checkkk");  // Check if you get the item object here
+
+  const [data, setData] = useState()
+  const DataApi = async (id) => {
+
+    const response = await Blog({category_id:id});
+    console.log("Blog..........", response?.data);
+    setData(response?.data?.data)
+  };
+
+  useEffect(() => {
+    DataApi(state?.id);
+  }, [])
 
   const [open, setOpen] = useState(false);
 
@@ -35,13 +55,18 @@ const NewBlog = ({ state }) => {
   })
   return (
     <div>
-      <div onClick={handleOpen} className='flex justify-end'>Add</div>
+      <div className='fixed top-5 right-5 z-50'>
+        <div onClick={handleOpen} className='flex justify-center items-center text-2xl bg-blue-500 text-white rounded-full w-12 h-12 cursor-pointer'>
+          <CiSquarePlus className='mt-1' />
+        </div>
+      </div>
+      {/* <div onClick={handleOpen} className='flex justify-end'>Add</div> */}
       {open && (
         <div className='fixed bg-black bg-opacity-50 z-50 h-[100vh] left-0 w-[100%] inset-0 py-20'>
           <div onClick={(e) => e.stopPropagation()} className='h-[100%] mx-auto w-[70%]'>
             <form onSubmit={formik.handleSubmit} className='lg:h-[100%] h-[50%] pl-10 m-auto w-[45vw] border rounded-md bg-white shadow-lg'>
               <div className='font-semibold text-3xl mt-5 text-center'>Add New Blog</div>
-              {/* <div className='text-center'>Brief outline of User's information</div> */}
+
               <div className='grid grid-cols-2 gap-2'>
                 <div>
                   <div className='text-gray-400'>Title</div>
@@ -112,6 +137,22 @@ const NewBlog = ({ state }) => {
           </div>
         </div>
       )}
+      <div className="grid grid-cols-3 gap-4">
+        {data && data.map((i, index) => (
+          <div key={index} className="bg-white rounded-lg shadow-lg p-6">
+            {/* <div>{i?.faq_id}</div> */}
+            <div className="font-bold text-gray-800 mb-2">{i?.title}</div>
+            <div className="text-gray-600">{i?.sub_title}</div>
+            <div className="text-gray-600">{i?.meta_title}</div>
+            <div className="text-gray-600">{i?.content}</div>
+            <img  src={`http://192.168.1.188:8098/${i?.images}`}/>
+            <div className='flex justify-between px-10 mt-2'>
+              <div><BlogUpdate i={i} DataApi={DataApi}/></div>
+              <div><BlogDelete i={i} DataApi={DataApi}/></div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

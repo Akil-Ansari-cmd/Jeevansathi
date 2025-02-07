@@ -34,8 +34,11 @@ const Faq = () => {
             const response = await FaqAdmin(values);
             console.log("response", response);
             if (response?.data?.response_code === 200) {
+
                 handleClose();
                 DataApi();
+
+                formik.handleReset()
             } else {
                 toast.console.error("Invalid");
 
@@ -46,12 +49,13 @@ const Faq = () => {
     return (
         <div>
             <div>
-                <div onClick={handleOpen} className='flex justify-end px-20 text-2xl'>
-                    <CiSquarePlus className='mt-1' />
-                    <div>Add</div>
+                <div className='fixed top-20 right-5 z-50'>
+                    <div onClick={handleOpen} className='flex justify-center items-center text-2xl bg-blue-500 text-white rounded-full w-12 h-12 cursor-pointer'>
+                        <CiSquarePlus className='mt-1' />
+                    </div>
                 </div>
                 {open && (
-                    <div className='fixed bg-black bg-opacity-50 z-50 h-[100vh] left-0 w-[100%] inset-0 py-20'>
+                    <div className='fixed bg-black bg-opacity-50 z-50 h-[100vh] left-0 w-[100%] inset-0 py-20 mt-10'>
                         <div onClick={(e) => e.stopPropagation()} className='h-[100%] mx-auto w-[70%]'>
                             <form onSubmit={formik.handleSubmit}
 
@@ -104,7 +108,7 @@ const Faq = () => {
                         <div className="text-gray-600"> Ans. {i?.answer}</div>
                         <div className='flex justify-between px-10'>
                             <div><Update state={i} DataApi={DataApi} /></div>
-                            <div><FaqDelete state={i}/></div>
+                            <div><FaqDelete state={i} DataApi={DataApi} /></div>
                         </div>
                     </div>
                 ))}

@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import { DeleteFaq } from '../Services/Admin Blog';
+import React, { useState } from 'react'
+import { DelPlan } from '../Services/Admin Plan';
 import toast, { Toaster } from 'react-hot-toast';
 
-const FaqDelete = ({ state, DataApi }) => {
-    console.log("Delete", state);
+const DeletePlan = ({ i, DataApi }) => {
+    console.log("Dellll", i);
     const [open, setOpen] = useState(false);
-    // const [responseMessage, setResponseMessage] = useState(""); 
+
 
     const handleOpen = () => setOpen(!open);
     const handleClose = () => setOpen(false);
 
     const DelApi = async (req) => {
         console.log(req);
-        const response = await DeleteFaq(req);
+        const response = await  DelPlan(req);
         // console.log("API response:", response);
         return response;
     };
-
     const handleDelete = async (id) => {
-        // console.log("Profile ID:", id);
-        // console.log("State object:", state);
+        console.log("Delete ID:", id);
+        console.log("State object:", i);
         const req = {
-            faq_id: state?.id,
+            planmodule_id: i?.id,
         };
         console.log("Request:", req);
         const response = await DelApi(req);
         // console.log("response.....", response);
 
-        if (response?.data?.response_code === 200) {
+        if (response?.data?.response_code === 400) {
             // console.log("Deletion successful!");
             toast.success("Successfully Delete");
             handleClose();
@@ -49,7 +48,7 @@ const FaqDelete = ({ state, DataApi }) => {
                             <div className="flex items-center justify-center mt-20 gap-2">
                                 <div onClick={handleClose} className="border cursor-pointer border-indigo-300 text-indigo-500 w-28 h-9 py-1 rounded-md text-center">Close</div>
                                 <button
-                                    onClick={() => handleDelete(state?._id)}
+                                    onClick={() => handleDelete(i?._id)}
                                     type="submit"
                                     className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-white w-28 h-9 py-1 rounded-md text-center"
                                 >
@@ -69,7 +68,7 @@ const FaqDelete = ({ state, DataApi }) => {
             )}
             <Toaster/>
         </div>
-    );
-};
+    )
+}
 
-export default FaqDelete;
+export default DeletePlan

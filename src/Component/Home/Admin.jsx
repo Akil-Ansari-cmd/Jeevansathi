@@ -13,9 +13,10 @@ import { GrBlog } from "react-icons/gr";
 import Edit from './Edit';
 import { Switch } from '@mui/material';
 import Blog from './Blog';
-import { useNavigate } from 'react-router-dom';
+import { FcSalesPerformance } from "react-icons/fc";
 import Logout from './Logout';
 import Faq from './Faq';
+import Plan from './Plan';
 const Admin = () => {
     
     const [content, setContent] = useState("Preferences")
@@ -95,7 +96,7 @@ const Admin = () => {
                         <div onClick={() => setContent("Preferences")} className='flex justify-between text-orange-500'>
                             <div className='flex text-xl gap-2'>
                                 <div><AiFillDashboard className='mt-1' /></div>
-                                <div>DASHBOARD</div>
+                                <div>PREFERENCES</div>
                             </div>
                             <div className='mt-1 text-xl'>{content === "Preferences" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
                         </div>
@@ -120,6 +121,13 @@ const Admin = () => {
                             </div>
                             <div className='mt-1 text-xl'>{content === "Faq" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
                         </div>
+                        <div onClick={() => setContent("Plan")} className='flex justify-between text-pink-500'>
+                            <div className='flex text-xl gap-2'>
+                                <div><FcSalesPerformance className='mt-1 ' /></div>
+                                <div>PLAN</div>
+                            </div>
+                            <div className='mt-1 text-xl'>{content === "Plan" ? <IoIosArrowForward /> : <ExpandMoreIcon />}</div>
+                        </div>
                     </div>
                 </div>
                 <div className='w-[80%] h-screen ml-[20%]'>
@@ -136,10 +144,10 @@ const Admin = () => {
                         {content === "Preferences" &&
                             <div className='border border-gray-300 rounded-md m-5'>
                                 <div className='flex justify-between pt-5 px-7'>
-                                    <div className='flex '>
+                                    {/* <div className='flex '>
                                         <div>Search:</div>
                                         <input className='border border-slate-400 outline-none ml-3 rounded-sm h-6 my-0.5' type='text' />
-                                    </div>
+                                    </div> */}
                                     {/* <div><Head2 /></div> */}
                                 </div>
 
@@ -203,12 +211,12 @@ const Admin = () => {
                         }
                         {content === "User" &&
                             <div className='border border-gray-300 rounded-md m-5'>
-                                <div className='flex justify-between pt-5 px-7'>
+                                {/* <div className='flex justify-between pt-5 px-7'>
                                     <div className='flex '>
                                         <div>Search:</div>
                                         <input className='border border-slate-400 outline-none ml-3 rounded-sm h-6 my-0.5' type='text' />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='flex flex-col border border-gray-300 my-10 mx-7 rounded-sm overflow-y-scroll'>
                                     <div className='flex text-sm border-b-2'>
                                         <div className='w-[5%] h-[9%] font-semibold p-1 py-2 pl-2 border-r border-gray-300'>#</div>
@@ -274,6 +282,11 @@ const Admin = () => {
                         {
                             content === "Faq" && <div>
                                 <Faq/>
+                            </div>
+                        }
+                        {
+                            content === "Plan" && <div>
+                                <Plan/>
                             </div>
                         }
                     </div>

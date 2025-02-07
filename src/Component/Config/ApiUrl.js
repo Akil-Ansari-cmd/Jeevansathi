@@ -7,5 +7,7 @@ export const ApiUrl = {
     status: "adminapp/profile-active-and-deactive-by-admin/",
     blog: "adminapp/blog-category-api-of-admin/",
     add: "adminapp/blog-api-of-admin/",
-    faq: "adminapp/faq-admin-api/"
+    faq: "adminapp/faq-admin-api/",
+    plan: "adminapp/planmodule-by-admin/",
+    module : "adminapp/plan_by_admin/"
 }

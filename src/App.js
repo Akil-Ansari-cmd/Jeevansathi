@@ -9,6 +9,8 @@ import Activity from "./Component/Dashboard/Activity";
 import Search from "./Component/Dashboard/Search";
 import Admin from "./Component/Home/Admin";
 import Panel from "./Component/Home/Panel";
+import NewBlog from "./Component/Home/NewBlog";
+import NewPlan from "./Component/Home/NewPlan";
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
     <Route path="/prof" element={<Profile/>}/>
     <Route path="/Panel" element={<Panel/>}/>
     <Route path="/Admin" element={<Admin/>}/>
+    <Route path="/Blog" element={<NewBlog/>}/>
+    <Route path="/Plan" element={<NewPlan/>}/>
     {/* <Route path="/Acti" element={<Activity/>}/>
     <Route path="/Search" element={<Search/>}/> */}
     </Routes>
